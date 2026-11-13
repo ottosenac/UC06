@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Serena Agenda — Protótipo</title>
+<style>
+:root{--bg:#f8f6f4;--surface:#fff;--ink:#302b2a;--muted:#817875;--line:#eee7e3;--brand:#8f6b78;--brand-dark:#765260;--brand-soft:#f2e8ec;--sage:#e8eee8;--sage-ink:#54705c;--danger:#a64e4e;--shadow:0 12px 32px rgba(55,35,40,.07);--radius:18px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1200px;margin:auto;min-height:100vh;display:grid;grid-template-columns:240px 1fr}.sidebar{background:#fff;border-right:1px solid var(--line);padding:28px 18px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-mark{width:42px;height:42px;border-radius:14px;background:var(--brand-soft);display:grid;place-items:center;color:var(--brand);font-size:23px}.brand-name{font-family:Georgia,serif;font-size:22px;letter-spacing:.2px}.brand-sub{font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;text-align:left;padding:12px 14px;border-radius:12px;color:var(--muted);display:flex;gap:12px;align-items:center}.nav button.active,.nav button:hover{background:var(--brand-soft);color:var(--brand-dark)}.nav .ico{width:20px;text-align:center;font-size:17px}.side-note{margin-top:auto;background:#faf6f7;border-radius:15px;padding:15px;color:var(--muted);font-size:12px}.side-note strong{display:block;color:var(--brand-dark);font-size:13px;margin-bottom:4px}.main{padding:30px 38px 45px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}.eyebrow{color:var(--brand);font-size:11px;text-transform:uppercase;letter-spacing:1.7px;font-weight:700}.page-title{font:32px/1.15 Georgia,serif;margin:5px 0}.sub{color:var(--muted);font-size:13px}.profile{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.avatar{width:36px;height:36px;border-radius:50%;background:var(--sage);display:grid;place-items:center;color:var(--sage-ink);font-weight:700}.content{display:grid;gap:20px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:19px;box-shadow:var(--shadow)}.stat-label{color:var(--muted);font-size:12px}.stat-value{font:28px Georgia,serif;margin:7px 0 2px}.stat-foot{font-size:11px;color:var(--muted)}.btn{border:0;border-radius:12px;padding:11px 16px;background:var(--brand);color:white;font-weight:650;box-shadow:0 5px 12px rgba(143,107,120,.18)}.btn:hover{background:var(--brand-dark)}.btn.secondary{background:#fff;color:var(--brand-dark);border:1px solid var(--line);box-shadow:none}.btn.ghost{background:transparent;color:var(--muted);box-shadow:none;padding:8px}.btn.danger{background:#fbefef;color:var(--danger);box-shadow:none}.datebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.datebar input{max-width:170px}.field{display:grid;gap:6px}.field label{font-size:12px;font-weight:650;color:#625956}.field input,.field select{width:100%;border:1px solid #e8dfdb;background:#fff;border-radius:11px;padding:12px;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}.agenda-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,.8fr);gap:18px}.section-title{font:21px Georgia,serif;margin:0}.timeline{margin-top:16px;display:grid;gap:9px}.appointment{display:grid;grid-template-columns:76px 1fr auto;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:13px}.time{font-weight:700;color:var(--brand-dark);font-size:13px}.appt-name{font-weight:650}.appt-meta{font-size:12px;color:var(--muted)}.pill{background:var(--sage);color:var(--sage-ink);font-size:10px;padding:5px 9px;border-radius:20px;white-space:nowrap}.empty{padding:26px;text-align:center;color:var(--muted);background:#fbf9f8;border:1px dashed #e8dfdb;border-radius:14px}.quick{background:linear-gradient(145deg,#f4eaee,#fbf8f7);border:0}.quick h3{font:22px Georgia,serif;margin:0 0 8px}.quick p{color:var(--muted);font-size:13px}.quick .btn{width:100%;margin-top:8px}.service-list{display:grid;gap:10px}.service-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px;border:1px solid var(--line);border-radius:14px}.service-name{font-weight:700}.service-desc{color:var(--muted);font-size:12px}.price{font-weight:700;color:var(--brand-dark)}.actions{display:flex;gap:5px}.form-card{max-width:720px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.span2{grid-column:span 2}.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}.hint{background:#faf6f7;color:var(--brand-dark);padding:12px 14px;border-radius:12px;font-size:12px}.toast{position:fixed;right:22px;bottom:22px;background:#302b2a;color:white;padding:13px 17px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}.mobile-head{display:none}.small{font-size:12px;color:var(--muted)}.divider{height:1px;background:var(--line);margin:14px 0}
+@media(max-width:800px){.app{display:block}.sidebar{display:none}.main{padding:22px 16px 90px}.topbar{margin-bottom:22px}.profile{display:none}.mobile-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.mobile-head .brand{padding:0}.mobile-nav{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:7px 4px calc(7px + env(safe-area-inset-bottom))}.mobile-nav button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:5px 2px;display:grid;justify-items:center;gap:3px}.mobile-nav button.active{color:var(--brand-dark)}.mobile-nav .ico{font-size:18px}.stats{gap:8px}.card{padding:15px}.stat-value{font-size:24px}.agenda-layout{grid-template-columns:1fr}.quick{order:-1}.page-title{font-size:28px}.appointment{grid-template-columns:58px 1fr auto;padding:10px;gap:8px}.pill{display:none}}
+@media(max-width:430px){.stats{grid-template-columns:1fr 1fr}.stats .card:last-child{grid-column:span 2}.form-grid{grid-template-columns:1fr}.span2{grid-column:auto}.row.stack{align-items:flex-start;flex-direction:column}.appointment{grid-template-columns:52px 1fr}.appointment .actions{grid-column:2}.datebar{width:100%}.datebar input{flex:1;max-width:none}}
+</style>
+<style>
+:where(button,a,input,select,textarea):focus-visible{outline:3px solid #765260;outline-offset:3px}
+.skip-link{position:fixed;z-index:20;top:-100px;left:16px;padding:12px 16px;background:#302b2a;color:#fff;border-radius:10px}
+.skip-link:focus{top:16px}
+.deliverable-report{background:#f8f6f4;padding:52px 24px 70px;border-top:1px solid #eee7e3}
+.report-inner{max-width:1120px;margin:0 auto}
+.report-heading{margin-bottom:28px}
+.report-heading h2{font:34px/1.15 Georgia,serif;margin:8px 0}
+.report-heading p,.report-section p{color:#625956}
+.report-section{background:#fff;border:1px solid #eee7e3;border-radius:18px;padding:24px;margin-top:18px}
+.report-section h3{font:23px Georgia,serif;margin:0 0 14px}
+.screen-map,.token-grid,.wireframe-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.screen-map>div,.token,.wireframe{border:1px solid #eee7e3;border-radius:14px;padding:16px}
+.screen-map ul{margin:8px 0 0;padding-left:20px;color:#625956}
+.wireframe pre{margin:12px 0 0;white-space:pre-wrap;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;color:#302b2a}
+.token-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.token{display:flex;align-items:center;gap:12px}
+.swatch{flex:none;width:34px;height:34px;border:1px solid rgba(48,43,42,.12);border-radius:10px}
+.token small{display:block;color:#817875}
+.table-scroll{overflow-x:auto}
+.heuristic-table{width:100%;border-collapse:collapse;min-width:760px;text-align:left}
+.heuristic-table th,.heuristic-table td{padding:12px;border-bottom:1px solid #eee7e3;vertical-align:top}
+.heuristic-table th{color:#765260;font-size:12px}
+.report-note{background:#faf6f7;border-radius:12px;padding:14px;color:#765260!important}
+.report-list{padding-left:22px;color:#625956}
+@media(max-width:640px){.deliverable-report{padding:36px 16px 48px}.report-section{padding:18px}.screen-map,.wireframe-grid,.token-grid{grid-template-columns:1fr}.report-heading h2{font-size:29px}}
+@media print{.app,.mobile-nav,.skip-link{display:none!important}.deliverable-report{padding:0;border:0}.report-section{break-inside:avoid;box-shadow:none}}
+</style></head>
+<body><a class="skip-link" href="#atividade">Pular protótipo e ir à documentação da atividade</a><div class="app"><aside class="sidebar"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><nav class="nav" id="sideNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Novo agendamento</button><button data-screen="novo-servico"><span class="ico">♡</span>Novo serviço</button></nav><div class="side-note"><strong>Um dia mais leve começa aqui.</strong>Organize seus atendimentos com carinho e simplicidade.</div></aside>
+<main class="main"><div class="mobile-head"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><div class="avatar">M</div></div><header class="topbar"><div><div class="eyebrow">Serena Salon Studio · Lages/SC</div><h1 class="page-title" id="pageTitle">Sua agenda</h1><div class="sub" id="pageSub">Acompanhe seus atendimentos em um só lugar.</div></div><div class="profile"><div class="avatar">M</div><span>Mariana<br><b style="color:var(--ink)">Proprietária</b></span></div></header><section class="content" id="screen"></section></main></div>
+<nav class="mobile-nav" id="mobileNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Agendar</button><button data-screen="novo-servico"><span class="ico">♡</span>Serviço</button></nav><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const $=s=>document.querySelector(s);const today=()=>new Date().toISOString().slice(0,10);let screen='agenda';let selectedDate=today();let editingService=null;
+let services=JSON.parse(localStorage.getItem('serena_services')||'null')||[{id:1,name:'Corte feminino',duration:60,price:85},{id:2,name:'Escova',duration:45,price:55},{id:3,name:'Coloração',duration:120,price:180},{id:4,name:'Manicure',duration:45,price:40}];
+let appointments=JSON.parse(localStorage.getItem('serena_appointments')||'null')||[{id:1,name:'Ana Clara',phone:'49999990001',serviceId:1,date:today(),time:'09:00'},{id:2,name:'Beatriz Lima',phone:'49999990002',serviceId:2,date:today(),time:'10:30'},{id:3,name:'Julia Martins',phone:'49999990003',serviceId:4,date:today(),time:'14:00'}];
+function persist(){localStorage.setItem('serena_services',JSON.stringify(services));localStorage.setItem('serena_appointments',JSON.stringify(appointments))}function money(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}function duration(id){return services.find(s=>s.id==id)?.duration||0}function endAt(time,dur){let [h,m]=time.split(':').map(Number);let n=h*60+m+dur;return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')}function mins(t){let [h,m]=t.split(':').map(Number);return h*60+m}function toast(msg){let t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}function go(s){screen=s;render();document.querySelectorAll('[data-screen]').forEach(b=>b.classList.toggle('active',b.dataset.screen===s));window.scrollTo(0,0)}
+document.querySelectorAll('[data-screen]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.screen)));
+function header(title,sub){$('#pageTitle').textContent=title;$('#pageSub').textContent=sub}
+function render(){if(screen==='agenda')agenda();if(screen==='servicos')serviceList();if(screen==='agendamento')bookingForm();if(screen==='novo-servico')serviceForm()}
+function agenda(){header('Sua agenda','Acompanhe seus atendimentos em um só lugar.');let list=appointments.filter(a=>a.date===selectedDate).sort((a,b)=>a.time.localeCompare(b.time));let busy=list.length;$('#screen').innerHTML=`<div class="stats"><div class="card"><div class="stat-label">Atendimentos do dia</div><div class="stat-value">${busy.toString().padStart(2,'0')}</div><div class="stat-foot">Na data selecionada</div></div><div class="card"><div class="stat-label">Serviços ativos</div><div class="stat-value">${services.length.toString().padStart(2,'0')}</div><div class="stat-foot">No seu catálogo</div></div><div class="card"><div class="stat-label">Próximo horário</div><div class="stat-value" style="font-size:23px">${list[0]?.time||'—'}</div><div class="stat-foot">${list[0]?.name||'Agenda livre'}</div></div></div><div class="agenda-layout"><div class="card"><div class="row stack"><div><h2 class="section-title">Programação do dia</h2><div class="small">Confira seus horários e atendimentos</div></div><div class="datebar"><input class="field" aria-label="Data da agenda" type="date" id="agendaDate" value="${selectedDate}"><button class="btn" onclick="go('agendamento')">＋ Agendar</button></div></div><div class="timeline">${list.length?list.map(a=>{let s=services.find(x=>x.id==a.serviceId);return `<div class="appointment"><div class="time">${a.time}<br><span class="small">até ${endAt(a.time,duration(a.serviceId))}</span></div><div><div class="appt-name">${esc(a.name)}</div><div class="appt-meta">${esc(s?.name||'Serviço removido')} · ${esc(a.phone)}</div></div><div class="actions"><span class="pill">Confirmado</span><button class="btn ghost" aria-label="Cancelar agendamento de ${esc(a.name)}" onclick="cancelAppt(${a.id})">⋯</button></div></div>`}).join(''):'<div class="empty">Nenhum atendimento nesta data.<br><span class="small">Aproveite para organizar novos horários.</span></div>'}</div></div><div class="card quick"><h3>Seu espaço, no seu ritmo.</h3><p>Registre um novo atendimento em poucos passos. O sistema verifica automaticamente se o horário está disponível.</p><button class="btn" onclick="go('agendamento')">＋ Novo agendamento</button><div class="divider"></div><div class="row"><span class="small">Catálogo de serviços</span><button class="btn secondary" onclick="go('servicos')">Ver serviços →</button></div></div></div>`;$('#agendaDate').addEventListener('change',e=>{selectedDate=e.target.value||today();agenda()})}
+function serviceList(){header('Seus serviços','Mantenha seu catálogo sempre atualizado.');$('#screen').innerHTML=`<div class="row"><div><h2 class="section-title">Catálogo de serviços</h2><div class="small">${services.length} serviço(s) cadastrado(s)</div></div><button class="btn" onclick="editingService=null;go('novo-servico')">＋ Adicionar serviço</button></div><div class="card"><div class="service-list">${services.length?services.map(s=>`<div class="service-item"><div><div class="service-name">${esc(s.name)}</div><div class="service-desc">${s.duration} minutos</div></div><div class="row"><div class="price">${money(s.price)}</div><div class="actions"><button class="btn secondary" onclick="editService(${s.id})">Editar</button><button class="btn danger" onclick="deleteService(${s.id})">Excluir</button></div></div></div>`).join(''):'<div class="empty">Nenhum serviço cadastrado.</div>'}</div></div>`}
+function serviceForm(){let s=editingService?services.find(x=>x.id===editingService):null;header(s?'Editar serviço':'Novo serviço',s?'Atualize as informações do serviço.':'Adicione um serviço ao catálogo do salão.');$('#screen').innerHTML=`<div class="card form-card"><div class="row"><div><h2 class="section-title">${s?'Editar informações':'Informações do serviço'}</h2><div class="small">Preencha os dados abaixo.</div></div><span class="pill">Catálogo</span></div><form id="serviceForm" novalidate><div class="form-grid" style="margin-top:22px"><div class="field span2"><label for="serviceName">Nome do serviço</label><input id="serviceName" minlength="3" required placeholder="Ex.: Corte feminino" value="${s?esc(s.name):''}"></div><div class="field"><label for="serviceDuration">Duração (minutos)</label><input id="serviceDuration" type="number" min="10" max="480" step="1" required placeholder="Ex.: 60" value="${s?s.duration:''}"></div><div class="field"><label for="servicePrice">Preço (R$)</label><input id="servicePrice" type="number" min="0.01" step="0.01" required placeholder="Ex.: 85,00" value="${s?s.price:''}"></div></div><div class="hint" style="margin-top:18px">A duração será utilizada para calcular o horário final e evitar conflitos na agenda.</div><div class="form-actions"><button type="button" class="btn secondary" onclick="go('servicos')">Cancelar</button><button class="btn" type="submit">Salvar serviço</button></div></form></div>`;$('#serviceForm').addEventListener('submit',e=>{e.preventDefault();let name=$('#serviceName').value.trim(),dur=Number($('#serviceDuration').value),price=Number($('#servicePrice').value);if(name.length<3){toast('Informe um nome com pelo menos 3 caracteres.');$('#serviceName').focus();return}if(!Number.isInteger(dur)||dur<10||dur>480){toast('A duração deve ser de 10 a 480 minutos.');return}if(!(price>0)){toast('Informe um preço maior que zero.');return}if(s){Object.assign(s,{name,duration:dur,price})}else services.push({id:Date.now(),name,duration:dur,price});persist();editingService=null;toast('Serviço salvo com sucesso!');go('servicos')})}
+function bookingForm(){header('Novo agendamento','Registre um atendimento e mantenha sua agenda organizada.');let opts=services.map(s=>`<option value="${s.id}">${esc(s.name)} · ${s.duration} min · ${money(s.price)}</option>`).join('');$('#screen').innerHTML=`<div class="card form-card"><div class="row"><div><h2 class="section-title">Dados do atendimento</h2><div class="small">Os campos marcados são obrigatórios.</div></div><span class="pill">Novo horário</span></div>${services.length?`<form id="bookingForm" novalidate><div class="form-grid" style="margin-top:22px"><div class="field span2"><label for="clientName">Nome da cliente</label><input id="clientName" required minlength="3" placeholder="Nome completo"></div><div class="field span2"><label for="clientPhone">Telefone</label><input id="clientPhone" required type="tel" placeholder="(49) 99999-9999"></div><div class="field span2"><label for="bookingService">Serviço</label><select id="bookingService" required>${opts}</select></div><div class="field"><label for="bookingDate">Data</label><input id="bookingDate" type="date" required min="${today()}" value="${selectedDate}"></div><div class="field"><label for="bookingTime">Horário de início</label><input id="bookingTime" type="time" required value="09:00"></div></div><div class="hint" id="durationHint" style="margin-top:18px">Selecione o serviço para conferir a duração e o horário final.</div><div class="form-actions"><button type="button" class="btn secondary" onclick="go('agenda')">Cancelar</button><button class="btn" type="submit">Confirmar agendamento</button></div></form>`:'<div class="empty" style="margin-top:18px">Cadastre pelo menos um serviço antes de criar um agendamento.<br><br><button class="btn" onclick="go(\'novo-servico\')">Cadastrar serviço</button></div>'}</div>`;if(!services.length)return;function hint(){let s=services.find(x=>x.id==$('#bookingService').value);$('#durationHint').textContent=s?`Duração: ${s.duration} minutos · Término previsto: ${endAt($('#bookingTime').value||'09:00',s.duration)} · ${money(s.price)}`:''}$('#bookingService').addEventListener('change',hint);$('#bookingTime').addEventListener('input',hint);hint();$('#bookingForm').addEventListener('submit',e=>{e.preventDefault();let name=$('#clientName').value.trim(),phone=$('#clientPhone').value.trim(),sid=Number($('#bookingService').value),date=$('#bookingDate').value,time=$('#bookingTime').value,s=services.find(x=>x.id===sid);if(name.length<3||!phone||!date||!time||!s){toast('Confira os campos obrigatórios.');return}let start=mins(time),end=start+s.duration;let conflict=appointments.some(a=>a.date===date&&(()=>{let aStart=mins(a.time),aEnd=aStart+duration(a.serviceId);return start<aEnd&&end>aStart})());if(conflict){toast('Este horário conflita com outro atendimento.');return}appointments.push({id:Date.now(),name,phone,serviceId:sid,date,time});selectedDate=date;persist();toast('Agendamento realizado com sucesso!');go('agenda')})}
+function editService(id){editingService=id;go('novo-servico')}function deleteService(id){if(appointments.some(a=>a.serviceId===id)){toast('Este serviço possui agendamentos vinculados e não pode ser excluído.');return}if(confirm('Deseja realmente excluir este serviço?')){services=services.filter(s=>s.id!==id);persist();serviceList();toast('Serviço excluído.')}}function cancelAppt(id){let a=appointments.find(x=>x.id===id);if(!a)return;if(confirm(`Deseja cancelar o agendamento de ${a.name}?`)){appointments=appointments.filter(x=>x.id!==id);persist();agenda();toast('Agendamento cancelado.')}}function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}render();
+</script>
+<section class="deliverable-report" id="atividade" aria-labelledby="reportTitle">
+  <div class="report-inner">
+    <header class="report-heading">
+      <div class="eyebrow">Aula 02 · UX, UI e prototipação</div>
+      <h2 id="reportTitle">Documentação da atividade</h2>
+      <p>Serena Salon Studio · Lages/SC · Protótipo inicial do MVP</p>
+    </header>
+
+    <section class="report-section" aria-labelledby="mapTitle">
+      <h3 id="mapTitle">1. Mapa de telas e navegação</h3>
+      <p>A navegação principal oferece quatro destinos e mantém ações de edição e cancelamento dentro do contexto de cada tela.</p>
+      <div class="screen-map">
+        <div><strong>01 · Agenda / Início</strong><ul><li>Selecionar data e consultar atendimentos</li><li>Visualizar horários ocupados</li><li>Acessar novo agendamento e serviços</li></ul></div>
+        <div><strong>02 · Serviços</strong><ul><li>Listar serviços cadastrados</li><li>Editar ou excluir quando não houver vínculo</li></ul></div>
+        <div><strong>03 · Novo agendamento</strong><ul><li>Informar cliente, telefone, serviço, data e horário</li><li>Conferir término previsto e validar conflito</li></ul></div>
+        <div><strong>04 · Novo serviço</strong><ul><li>Informar nome, duração e preço</li><li>Salvar ou cancelar e retornar ao catálogo</li></ul></div>
+      </div>
+    </section>
+
+    <section class="report-section" aria-labelledby="wireframeTitle">
+      <h3 id="wireframeTitle">2. Wireframes lo-fi</h3>
+      <p>Esboços estruturais para comunicar hierarquia e fluxo, sem depender do acabamento visual.</p>
+      <div class="wireframe-grid">
+        <div class="wireframe"><strong>Tela 01 · Agenda / Início</strong><pre>+----------------------------------+
+| SERENA                 Mariana  |
+| Sua agenda                      |
+| [Atend.] [Serviços] [Próximo]   |
+| Programação do dia              |
+| [Selecionar data] [+ Agendar]   |
+| 09:00  Cliente / Serviço        |
+| 10:30  Cliente / Serviço        |
+| Acesso rápido aos serviços      |
+| Agenda | Serviços | Agendar | + |
++----------------------------------+</pre></div>
+        <div class="wireframe"><strong>Tela 02 · Serviços</strong><pre>+----------------------------------+
+| Seus serviços                   |
+| [+ Adicionar serviço]           |
+| Corte feminino                  |
+| 60 minutos        R$ 85,00      |
+| [Editar] [Excluir]              |
+| Escova                          |
+| 45 minutos        R$ 55,00      |
+| [Editar] [Excluir]              |
+| Navegação principal             |
++----------------------------------+</pre></div>
+        <div class="wireframe"><strong>Tela 03 · Novo agendamento</strong><pre>+----------------------------------+
+| Novo agendamento                |
+| Nome da cliente                 |
+| [____________________________]  |
+| Telefone                        |
+| [____________________________]  |
+| Serviço [Selecionar          v] |
+| Data [__/__/____] Hora [__:__]  |
+| Duração / término previsto      |
+| [Confirmar agendamento]         |
+| [Cancelar]                      |
++----------------------------------+</pre></div>
+        <div class="wireframe"><strong>Tela 04 · Novo serviço</strong><pre>+----------------------------------+
+| Novo serviço                    |
+| Nome do serviço                 |
+| [____________________________]  |
+| Duração (minutos)               |
+| [____________________________]  |
+| Preço (R$)                      |
+| [____________________________]  |
+| [Salvar serviço] [Cancelar]     |
++----------------------------------+</pre></div>
+      </div>
+    </section>
+
+    <section class="report-section" aria-labelledby="tokensTitle">
+      <h3 id="tokensTitle">3. Tokens visuais</h3>
+      <div class="token-grid">
+        <div class="token"><span class="swatch" style="background:#8f6b78"></span><span>Malva principal<small>#8F6B78</small></span></div>
+        <div class="token"><span class="swatch" style="background:#765260"></span><span>Malva escuro<small>#765260</small></span></div>
+        <div class="token"><span class="swatch" style="background:#f2e8ec"></span><span>Rosa suave<small>#F2E8EC</small></span></div>
+        <div class="token"><span class="swatch" style="background:#f8f6f4"></span><span>Fundo<small>#F8F6F4</small></span></div>
+        <div class="token"><span class="swatch" style="background:#ffffff"></span><span>Superfície<small>#FFFFFF</small></span></div>
+        <div class="token"><span class="swatch" style="background:#302b2a"></span><span>Texto principal<small>#302B2A</small></span></div>
+        <div class="token"><span class="swatch" style="background:#817875"></span><span>Texto secundário<small>#817875</small></span></div>
+        <div class="token"><span class="swatch" style="background:#e8eee8"></span><span>Verde suave<small>#E8EEE8</small></span></div>
+        <div class="token"><span aria-hidden="true">Aa</span><span>Tipografia<small>Títulos: Georgia · Interface: system-ui</small></span></div>
+        <div class="token"><span aria-hidden="true">↔</span><span>Forma e espaçamento<small>Bordas: 12–18 px · Base: 8 px</small></span></div>
+      </div>
+    </section>
+
+    <section class="report-section" aria-labelledby="heuristicTitle">
+      <h3 id="heuristicTitle">4. Avaliação heurística inicial</h3>
+      <p>Leitura inicial do protótipo por cinco heurísticas, aplicada às quatro telas principais.</p>
+      <div class="table-scroll">
+        <table class="heuristic-table">
+          <thead><tr><th>Heurística</th><th>Agenda</th><th>Serviços</th><th>Agendamento</th><th>Novo serviço</th></tr></thead>
+          <tbody>
+            <tr><th>Visibilidade do status</th><td>Indicadores, programação e estados vazios visíveis.</td><td>Contagem e catálogo mostram o estado atual.</td><td>Resumo do serviço e mensagens de validação, conflito e sucesso.</td><td>Mensagens confirmam validação e salvamento.</td></tr>
+            <tr><th>Correspondência com o mundo real</th><td>Data, horários e atendimentos do salão.</td><td>Nome, duração e preço dos serviços.</td><td>Campos seguem a marcação habitual de um atendimento.</td><td>Campos refletem o cadastro usado pelo salão.</td></tr>
+            <tr><th>Controle e liberdade</th><td>Navegação principal acessível a partir da agenda.</td><td>Ações de editar e excluir no próprio serviço.</td><td>Cancelar retorna à agenda; cancelamento pode ser confirmado.</td><td>Cancelar retorna ao catálogo.</td></tr>
+            <tr><th>Consistência e padrões</th><td>Cartões, cores e botões seguem os tokens.</td><td>Mesmos padrões de cartões e ações.</td><td>Formulário e botões seguem o padrão visual.</td><td>Mesmo padrão de formulário e ações.</td></tr>
+            <tr><th>Prevenção de erros</th><td>Data selecionável e orientação para estado vazio.</td><td>Impede excluir serviço associado a agendamento.</td><td>Exige campos e bloqueia sobreposição de horários.</td><td>Valida nome, duração e preço.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="report-note">Próximas iterações: reforçar e testar foco e navegação por teclado; incluir edição de agendamentos; definir expediente e intervalos; validar formato de telefone; avaliar múltiplos profissionais. Em produção, serão necessários autenticação, autorização, banco remoto e prevenção de conflitos no servidor.</p>
+    </section>
+
+    <section class="report-section" aria-labelledby="limitsTitle">
+      <h3 id="limitsTitle">5. Escopo e limitações do protótipo</h3>
+      <ul class="report-list">
+        <li>As quatro telas têm navegação funcional e se adaptam a desktop e celular.</li>
+        <li>O protótipo permite cadastrar, editar e excluir serviços; criar e cancelar agendamentos; calcular término e verificar sobreposição.</li>
+        <li>Os dados de demonstração ficam no armazenamento local do navegador. Não há backend, login, sincronização entre dispositivos ou integração com WhatsApp.</li>
+        <li>Os dados são fictícios. Não utilizar este protótipo para armazenar informações reais de clientes.</li>
+      </ul>
+    </section>
+  </div>
+</section>
+</body></html>
