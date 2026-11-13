@@ -496,12 +496,101 @@ Para manter o escopo do MVP, não serão desenvolvidos nesta versão:
 
 ------------------------------------------------------------------------
 
-## 10. Histórico do documento
+## 10. AULA 02 --- UX, UI e prototipação
+
+Esta seção registra a documentação complementar da atividade de
+prototipação. O protótipo navegável está em
+[index.html](./index.html); o mapa, os tokens e a avaliação heurística
+ficam neste README para manter o HTML focado na interface.
+
+### 10.1 Mapa de telas e navegação
+
+O exercício propõe quatro telas: lista de serviços, cadastro de serviço,
+novo agendamento e agenda do dia. No protótipo, a agenda é a tela inicial
+e a navegação global permanece disponível em todas as telas.
+
+```text
+Serena Agenda
+├── Agenda do dia (início)
+│   ├── Selecionar data e consultar atendimentos
+│   ├── Acessar Novo agendamento
+│   └── Acessar Serviços
+├── Serviços (lista)
+│   ├── Editar serviço
+│   ├── Excluir serviço sem agendamento vinculado
+│   └── Acessar Novo serviço
+├── Novo agendamento
+│   └── Validar dados, duração e conflito de horário
+└── Novo serviço (cadastro e edição)
+    └── Informar nome, duração e preço
+```
+
+Edição e cancelamento de agendamentos são ações contextuais. O mapa tem
+profundidade máxima de dois níveis, sem contar a navegação global.
+
+### 10.2 Tokens visuais
+
+| Token | Valor |
+|---|---|
+| Malva principal | `#8F6B78` |
+| Malva escuro | `#765260` |
+| Rosa suave | `#F2E8EC` |
+| Fundo | `#F8F6F4` |
+| Superfície | `#FFFFFF` |
+| Texto principal | `#302B2A` |
+| Texto secundário | `#817875` |
+| Verde suave | `#E8EEE8` |
+| Tipografia | Georgia para títulos; system-ui para interface |
+| Bordas e espaçamento | 12–18 px; escala baseada em 8 px |
+
+### 10.3 Avaliação heurística inicial
+
+Avaliação preliminar pelas cinco heurísticas trabalhadas na aula. Não
+substitui testes de usabilidade com pessoas.
+
+| Heurística | Agenda do dia | Lista de serviços | Novo agendamento | Cadastro de serviço |
+|---|---|---|---|---|
+| Visibilidade do status | Indicadores, lista e estado vazio informam a situação. | Contagem, catálogo e estado vazio visíveis. | Resumo do serviço e mensagens de validação, conflito e sucesso. | Validação e mensagem de sucesso ao salvar. |
+| Correspondência com o mundo real | Data, horários e atendimentos do salão. | Nome, duração e preço dos serviços. | Campos correspondem à marcação de um atendimento. | Campos correspondem ao cadastro do catálogo. |
+| Controle e liberdade | Navegação global e acesso ao agendamento. | Editar ou excluir no próprio serviço; exclusão com confirmação e bloqueio se houver vínculo. | Ação para cancelar e retornar à agenda; cancelamento contextual com confirmação. | Cancelar retorna à lista de serviços. |
+| Consistência e padrões | Cores, cartões e ações seguem os padrões visuais. | Ações e cartões seguem os mesmos padrões. | Formulário e botões seguem os padrões. | Formulário e botões seguem os padrões. |
+| Prevenção de erros | Seleção de data e orientação para estado vazio. | Impede excluir serviço associado a agendamento. | Exige os campos e bloqueia sobreposição de horários. | Valida nome, duração e preço. |
+
+### 10.4 Acessibilidade e próximas iterações
+
+-   O protótipo apresenta foco de teclado visível; ainda é necessário
+    percorrer todas as ações com Tab, Enter e Esc.
+-   Contraste WCAG, leitura com tecnologia assistiva e tamanho mínimo de
+    alvos de toque devem ser verificados antes de afirmar conformidade.
+-   Considerar edição de agendamentos, expediente e intervalos,
+    validação de telefone e múltiplos profissionais.
+-   Antes de uso real, implementar autenticação, autorização,
+    persistência remota e validação de conflitos no servidor.
+
+### 10.5 Escopo e limitações do protótipo
+
+-   Navegação funcional entre agenda, serviços, novo agendamento e
+    cadastro/edição de serviço, em layout responsivo.
+-   Permite cadastrar, editar e excluir serviços; criar e cancelar
+    agendamentos; calcular horário final e verificar sobreposição.
+-   Os dados demonstrativos são armazenados localmente no navegador.
+    Não há backend, login, sincronização entre dispositivos ou integração
+    com WhatsApp.
+-   Não utilizar dados reais de clientes nesta versão de demonstração.
+-   Os wireframes lo-fi foram removidos do HTML a pedido; esse item do
+    exercício não está incluído nesta entrega.
+
+------------------------------------------------------------------------
+
+## 11. Histórico do documento
 
   -----------------------------------------------------------------------
   Versão                  Descrição
   ----------------------- -----------------------------------------------
   1.0                     Primeira versão elaborada a partir do material
                           da Aula 01 e de entrevista/personas simuladas.
+
+  1.1                     Documentação complementar da prototipação da
+                          Aula 02 adicionada neste README.
 
   -----------------------------------------------------------------------
