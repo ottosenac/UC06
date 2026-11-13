@@ -18,10 +18,9 @@
 .report-heading p,.report-section p{color:#625956}
 .report-section{background:#fff;border:1px solid #eee7e3;border-radius:18px;padding:24px;margin-top:18px}
 .report-section h3{font:23px Georgia,serif;margin:0 0 14px}
-.screen-map,.token-grid,.wireframe-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.screen-map>div,.token,.wireframe{border:1px solid #eee7e3;border-radius:14px;padding:16px}
+.screen-map,.token-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.screen-map>div,.token{border:1px solid #eee7e3;border-radius:14px;padding:16px}
 .screen-map ul{margin:8px 0 0;padding-left:20px;color:#625956}
-.wireframe pre{margin:12px 0 0;white-space:pre-wrap;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;color:#302b2a}
 .token-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .token{display:flex;align-items:center;gap:12px}
 .swatch{flex:none;width:34px;height:34px;border:1px solid rgba(48,43,42,.12);border-radius:10px}
@@ -32,7 +31,7 @@
 .heuristic-table th{color:#765260;font-size:12px}
 .report-note{background:#faf6f7;border-radius:12px;padding:14px;color:#765260!important}
 .report-list{padding-left:22px;color:#625956}
-@media(max-width:640px){.deliverable-report{padding:36px 16px 48px}.report-section{padding:18px}.screen-map,.wireframe-grid,.token-grid{grid-template-columns:1fr}.report-heading h2{font-size:29px}}
+@media(max-width:640px){.deliverable-report{padding:36px 16px 48px}.report-section{padding:18px}.screen-map,.token-grid{grid-template-columns:1fr}.report-heading h2{font-size:29px}}
 @media print{.app,.mobile-nav,.skip-link{display:none!important}.deliverable-report{padding:0;border:0}.report-section{break-inside:avoid;box-shadow:none}}
 </style></head>
 <body><a class="skip-link" href="#atividade">Pular protótipo e ir à documentação da atividade</a><div class="app"><aside class="sidebar"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><nav class="nav" id="sideNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Novo agendamento</button><button data-screen="novo-servico"><span class="ico">♡</span>Novo serviço</button></nav><div class="side-note"><strong>Um dia mais leve começa aqui.</strong>Organize seus atendimentos com carinho e simplicidade.</div></aside>
@@ -62,68 +61,17 @@ function editService(id){editingService=id;go('novo-servico')}function deleteSer
 
     <section class="report-section" aria-labelledby="mapTitle">
       <h3 id="mapTitle">1. Mapa de telas e navegação</h3>
-      <p>A navegação principal oferece quatro destinos e mantém ações de edição e cancelamento dentro do contexto de cada tela.</p>
+      <p>As quatro telas seguem a sequência proposta no PDF. A agenda do dia é a tela inicial do protótipo; a navegação global permite acessar os outros destinos.</p>
       <div class="screen-map">
-        <div><strong>01 · Agenda / Início</strong><ul><li>Selecionar data e consultar atendimentos</li><li>Visualizar horários ocupados</li><li>Acessar novo agendamento e serviços</li></ul></div>
-        <div><strong>02 · Serviços</strong><ul><li>Listar serviços cadastrados</li><li>Editar ou excluir quando não houver vínculo</li></ul></div>
-        <div><strong>03 · Novo agendamento</strong><ul><li>Informar cliente, telefone, serviço, data e horário</li><li>Conferir término previsto e validar conflito</li></ul></div>
-        <div><strong>04 · Novo serviço</strong><ul><li>Informar nome, duração e preço</li><li>Salvar ou cancelar e retornar ao catálogo</li></ul></div>
-      </div>
-    </section>
-
-    <section class="report-section" aria-labelledby="wireframeTitle">
-      <h3 id="wireframeTitle">2. Wireframes lo-fi</h3>
-      <p>Esboços estruturais para comunicar hierarquia e fluxo, sem depender do acabamento visual.</p>
-      <div class="wireframe-grid">
-        <div class="wireframe"><strong>Tela 01 · Agenda / Início</strong><pre>+----------------------------------+
-| SERENA                 Mariana  |
-| Sua agenda                      |
-| [Atend.] [Serviços] [Próximo]   |
-| Programação do dia              |
-| [Selecionar data] [+ Agendar]   |
-| 09:00  Cliente / Serviço        |
-| 10:30  Cliente / Serviço        |
-| Acesso rápido aos serviços      |
-| Agenda | Serviços | Agendar | + |
-+----------------------------------+</pre></div>
-        <div class="wireframe"><strong>Tela 02 · Serviços</strong><pre>+----------------------------------+
-| Seus serviços                   |
-| [+ Adicionar serviço]           |
-| Corte feminino                  |
-| 60 minutos        R$ 85,00      |
-| [Editar] [Excluir]              |
-| Escova                          |
-| 45 minutos        R$ 55,00      |
-| [Editar] [Excluir]              |
-| Navegação principal             |
-+----------------------------------+</pre></div>
-        <div class="wireframe"><strong>Tela 03 · Novo agendamento</strong><pre>+----------------------------------+
-| Novo agendamento                |
-| Nome da cliente                 |
-| [____________________________]  |
-| Telefone                        |
-| [____________________________]  |
-| Serviço [Selecionar          v] |
-| Data [__/__/____] Hora [__:__]  |
-| Duração / término previsto      |
-| [Confirmar agendamento]         |
-| [Cancelar]                      |
-+----------------------------------+</pre></div>
-        <div class="wireframe"><strong>Tela 04 · Novo serviço</strong><pre>+----------------------------------+
-| Novo serviço                    |
-| Nome do serviço                 |
-| [____________________________]  |
-| Duração (minutos)               |
-| [____________________________]  |
-| Preço (R$)                      |
-| [____________________________]  |
-| [Salvar serviço] [Cancelar]     |
-+----------------------------------+</pre></div>
+        <div><strong>01 · Lista de serviços (US-02)</strong><ul><li>Consultar serviços, duração e preço</li><li>Acessar cadastro, edição e exclusão contextual</li></ul></div>
+        <div><strong>02 · Cadastro de serviço (US-01, RF01/RF02)</strong><ul><li>Informar nome, duração e preço</li><li>Salvar ou cancelar e retornar à lista</li></ul></div>
+        <div><strong>03 · Novo agendamento (US-03, RF04)</strong><ul><li>Informar cliente, telefone, serviço, data e horário</li><li>Conferir término previsto e validar conflito</li></ul></div>
+        <div><strong>04 · Agenda do dia (US-04, RF05)</strong><ul><li>Selecionar data e consultar atendimentos</li><li>Visualizar horários ocupados e iniciar agendamento</li></ul></div>
       </div>
     </section>
 
     <section class="report-section" aria-labelledby="tokensTitle">
-      <h3 id="tokensTitle">3. Tokens visuais</h3>
+      <h3 id="tokensTitle">2. Tokens visuais</h3>
       <div class="token-grid">
         <div class="token"><span class="swatch" style="background:#8f6b78"></span><span>Malva principal<small>#8F6B78</small></span></div>
         <div class="token"><span class="swatch" style="background:#765260"></span><span>Malva escuro<small>#765260</small></span></div>
@@ -139,25 +87,25 @@ function editService(id){editingService=id;go('novo-servico')}function deleteSer
     </section>
 
     <section class="report-section" aria-labelledby="heuristicTitle">
-      <h3 id="heuristicTitle">4. Avaliação heurística inicial</h3>
-      <p>Leitura inicial do protótipo por cinco heurísticas, aplicada às quatro telas principais.</p>
+      <h3 id="heuristicTitle">3. Avaliação heurística inicial</h3>
+      <p>Leitura inicial pelas cinco heurísticas citadas no PDF. É uma avaliação preliminar e não substitui testes com usuários.</p>
       <div class="table-scroll">
         <table class="heuristic-table">
-          <thead><tr><th>Heurística</th><th>Agenda</th><th>Serviços</th><th>Agendamento</th><th>Novo serviço</th></tr></thead>
+          <thead><tr><th>Heurística</th><th>01 Lista de serviços</th><th>02 Cadastro de serviço</th><th>03 Novo agendamento</th><th>04 Agenda do dia</th></tr></thead>
           <tbody>
-            <tr><th>Visibilidade do status</th><td>Indicadores, programação e estados vazios visíveis.</td><td>Contagem e catálogo mostram o estado atual.</td><td>Resumo do serviço e mensagens de validação, conflito e sucesso.</td><td>Mensagens confirmam validação e salvamento.</td></tr>
-            <tr><th>Correspondência com o mundo real</th><td>Data, horários e atendimentos do salão.</td><td>Nome, duração e preço dos serviços.</td><td>Campos seguem a marcação habitual de um atendimento.</td><td>Campos refletem o cadastro usado pelo salão.</td></tr>
-            <tr><th>Controle e liberdade</th><td>Navegação principal acessível a partir da agenda.</td><td>Ações de editar e excluir no próprio serviço.</td><td>Cancelar retorna à agenda; cancelamento pode ser confirmado.</td><td>Cancelar retorna ao catálogo.</td></tr>
-            <tr><th>Consistência e padrões</th><td>Cartões, cores e botões seguem os tokens.</td><td>Mesmos padrões de cartões e ações.</td><td>Formulário e botões seguem o padrão visual.</td><td>Mesmo padrão de formulário e ações.</td></tr>
-            <tr><th>Prevenção de erros</th><td>Data selecionável e orientação para estado vazio.</td><td>Impede excluir serviço associado a agendamento.</td><td>Exige campos e bloqueia sobreposição de horários.</td><td>Valida nome, duração e preço.</td></tr>
+            <tr><th>Visibilidade do status</th><td>Contagem, catálogo e estados vazios visíveis.</td><td>Mensagens confirmam validação e salvamento.</td><td>Resumo do serviço e mensagens de validação, conflito e sucesso.</td><td>Indicadores, programação e estados vazios visíveis.</td></tr>
+            <tr><th>Correspondência com o mundo real</th><td>Nome, duração e preço dos serviços.</td><td>Campos refletem o cadastro usado pelo salão.</td><td>Campos seguem a marcação habitual de um atendimento.</td><td>Data, horários e atendimentos do salão.</td></tr>
+            <tr><th>Controle e liberdade</th><td>Ações de editar e excluir no próprio serviço.</td><td>Cancelar retorna à lista de serviços.</td><td>Cancelar retorna à agenda; cancelamento pode ser confirmado.</td><td>Navegação global e acesso ao novo agendamento.</td></tr>
+            <tr><th>Consistência e padrões</th><td>Cartões e ações seguem os padrões visuais.</td><td>Formulário e botões seguem o padrão visual.</td><td>Formulário e botões seguem o padrão visual.</td><td>Cartões, cores e botões seguem os tokens.</td></tr>
+            <tr><th>Prevenção de erros</th><td>Impede excluir serviço associado a agendamento.</td><td>Valida nome, duração e preço.</td><td>Exige campos e bloqueia sobreposição de horários.</td><td>Data selecionável e orientação para estado vazio.</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="report-note">Próximas iterações: reforçar e testar foco e navegação por teclado; incluir edição de agendamentos; definir expediente e intervalos; validar formato de telefone; avaliar múltiplos profissionais. Em produção, serão necessários autenticação, autorização, banco remoto e prevenção de conflitos no servidor.</p>
+      <p class="report-note">Próximas iterações: testar foco, navegação por teclado e contraste em todos os estados; incluir edição de agendamentos; definir expediente e intervalos; validar formato de telefone; avaliar múltiplos profissionais. Em produção, serão necessários autenticação, autorização, banco remoto e prevenção de conflitos no servidor.</p>
     </section>
 
     <section class="report-section" aria-labelledby="limitsTitle">
-      <h3 id="limitsTitle">5. Escopo e limitações do protótipo</h3>
+      <h3 id="limitsTitle">4. Escopo e limitações do protótipo</h3>
       <ul class="report-list">
         <li>As quatro telas têm navegação funcional e se adaptam a desktop e celular.</li>
         <li>O protótipo permite cadastrar, editar e excluir serviços; criar e cancelar agendamentos; calcular término e verificar sobreposição.</li>
