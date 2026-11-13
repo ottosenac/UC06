@@ -9,32 +9,9 @@
 </style>
 <style>
 :where(button,a,input,select,textarea):focus-visible{outline:3px solid #765260;outline-offset:3px}
-.skip-link{position:fixed;z-index:20;top:-100px;left:16px;padding:12px 16px;background:#302b2a;color:#fff;border-radius:10px}
-.skip-link:focus{top:16px}
-.deliverable-report{background:#f8f6f4;padding:52px 24px 70px;border-top:1px solid #eee7e3}
-.report-inner{max-width:1120px;margin:0 auto}
-.report-heading{margin-bottom:28px}
-.report-heading h2{font:34px/1.15 Georgia,serif;margin:8px 0}
-.report-heading p,.report-section p{color:#625956}
-.report-section{background:#fff;border:1px solid #eee7e3;border-radius:18px;padding:24px;margin-top:18px}
-.report-section h3{font:23px Georgia,serif;margin:0 0 14px}
-.screen-map,.token-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.screen-map>div,.token{border:1px solid #eee7e3;border-radius:14px;padding:16px}
-.screen-map ul{margin:8px 0 0;padding-left:20px;color:#625956}
-.token-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.token{display:flex;align-items:center;gap:12px}
-.swatch{flex:none;width:34px;height:34px;border:1px solid rgba(48,43,42,.12);border-radius:10px}
-.token small{display:block;color:#817875}
-.table-scroll{overflow-x:auto}
-.heuristic-table{width:100%;border-collapse:collapse;min-width:760px;text-align:left}
-.heuristic-table th,.heuristic-table td{padding:12px;border-bottom:1px solid #eee7e3;vertical-align:top}
-.heuristic-table th{color:#765260;font-size:12px}
-.report-note{background:#faf6f7;border-radius:12px;padding:14px;color:#765260!important}
-.report-list{padding-left:22px;color:#625956}
-@media(max-width:640px){.deliverable-report{padding:36px 16px 48px}.report-section{padding:18px}.screen-map,.token-grid{grid-template-columns:1fr}.report-heading h2{font-size:29px}}
-@media print{.app,.mobile-nav,.skip-link{display:none!important}.deliverable-report{padding:0;border:0}.report-section{break-inside:avoid;box-shadow:none}}
+@media(min-width:801px){.mobile-nav{display:none}}
 </style></head>
-<body><a class="skip-link" href="#atividade">Pular protótipo e ir à documentação da atividade</a><div class="app"><aside class="sidebar"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><nav class="nav" id="sideNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Novo agendamento</button><button data-screen="novo-servico"><span class="ico">♡</span>Novo serviço</button></nav><div class="side-note"><strong>Um dia mais leve começa aqui.</strong>Organize seus atendimentos com carinho e simplicidade.</div></aside>
+<body><div class="app"><aside class="sidebar"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><nav class="nav" id="sideNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Novo agendamento</button><button data-screen="novo-servico"><span class="ico">♡</span>Novo serviço</button></nav><div class="side-note"><strong>Um dia mais leve começa aqui.</strong>Organize seus atendimentos com carinho e simplicidade.</div></aside>
 <main class="main"><div class="mobile-head"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><div class="avatar">M</div></div><header class="topbar"><div><div class="eyebrow">Serena Salon Studio · Lages/SC</div><h1 class="page-title" id="pageTitle">Sua agenda</h1><div class="sub" id="pageSub">Acompanhe seus atendimentos em um só lugar.</div></div><div class="profile"><div class="avatar">M</div><span>Mariana<br><b style="color:var(--ink)">Proprietária</b></span></div></header><section class="content" id="screen"></section></main></div>
 <nav class="mobile-nav" id="mobileNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Agendar</button><button data-screen="novo-servico"><span class="ico">♡</span>Serviço</button></nav><div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
@@ -51,68 +28,4 @@ function serviceForm(){let s=editingService?services.find(x=>x.id===editingServi
 function bookingForm(){header('Novo agendamento','Registre um atendimento e mantenha sua agenda organizada.');let opts=services.map(s=>`<option value="${s.id}">${esc(s.name)} · ${s.duration} min · ${money(s.price)}</option>`).join('');$('#screen').innerHTML=`<div class="card form-card"><div class="row"><div><h2 class="section-title">Dados do atendimento</h2><div class="small">Os campos marcados são obrigatórios.</div></div><span class="pill">Novo horário</span></div>${services.length?`<form id="bookingForm" novalidate><div class="form-grid" style="margin-top:22px"><div class="field span2"><label for="clientName">Nome da cliente</label><input id="clientName" required minlength="3" placeholder="Nome completo"></div><div class="field span2"><label for="clientPhone">Telefone</label><input id="clientPhone" required type="tel" placeholder="(49) 99999-9999"></div><div class="field span2"><label for="bookingService">Serviço</label><select id="bookingService" required>${opts}</select></div><div class="field"><label for="bookingDate">Data</label><input id="bookingDate" type="date" required min="${today()}" value="${selectedDate}"></div><div class="field"><label for="bookingTime">Horário de início</label><input id="bookingTime" type="time" required value="09:00"></div></div><div class="hint" id="durationHint" style="margin-top:18px">Selecione o serviço para conferir a duração e o horário final.</div><div class="form-actions"><button type="button" class="btn secondary" onclick="go('agenda')">Cancelar</button><button class="btn" type="submit">Confirmar agendamento</button></div></form>`:'<div class="empty" style="margin-top:18px">Cadastre pelo menos um serviço antes de criar um agendamento.<br><br><button class="btn" onclick="go(\'novo-servico\')">Cadastrar serviço</button></div>'}</div>`;if(!services.length)return;function hint(){let s=services.find(x=>x.id==$('#bookingService').value);$('#durationHint').textContent=s?`Duração: ${s.duration} minutos · Término previsto: ${endAt($('#bookingTime').value||'09:00',s.duration)} · ${money(s.price)}`:''}$('#bookingService').addEventListener('change',hint);$('#bookingTime').addEventListener('input',hint);hint();$('#bookingForm').addEventListener('submit',e=>{e.preventDefault();let name=$('#clientName').value.trim(),phone=$('#clientPhone').value.trim(),sid=Number($('#bookingService').value),date=$('#bookingDate').value,time=$('#bookingTime').value,s=services.find(x=>x.id===sid);if(name.length<3||!phone||!date||!time||!s){toast('Confira os campos obrigatórios.');return}let start=mins(time),end=start+s.duration;let conflict=appointments.some(a=>a.date===date&&(()=>{let aStart=mins(a.time),aEnd=aStart+duration(a.serviceId);return start<aEnd&&end>aStart})());if(conflict){toast('Este horário conflita com outro atendimento.');return}appointments.push({id:Date.now(),name,phone,serviceId:sid,date,time});selectedDate=date;persist();toast('Agendamento realizado com sucesso!');go('agenda')})}
 function editService(id){editingService=id;go('novo-servico')}function deleteService(id){if(appointments.some(a=>a.serviceId===id)){toast('Este serviço possui agendamentos vinculados e não pode ser excluído.');return}if(confirm('Deseja realmente excluir este serviço?')){services=services.filter(s=>s.id!==id);persist();serviceList();toast('Serviço excluído.')}}function cancelAppt(id){let a=appointments.find(x=>x.id===id);if(!a)return;if(confirm(`Deseja cancelar o agendamento de ${a.name}?`)){appointments=appointments.filter(x=>x.id!==id);persist();agenda();toast('Agendamento cancelado.')}}function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}render();
 </script>
-<section class="deliverable-report" id="atividade" aria-labelledby="reportTitle">
-  <div class="report-inner">
-    <header class="report-heading">
-      <div class="eyebrow">Aula 02 · UX, UI e prototipação</div>
-      <h2 id="reportTitle">Documentação da atividade</h2>
-      <p>Serena Salon Studio · Lages/SC · Protótipo inicial do MVP</p>
-    </header>
-
-    <section class="report-section" aria-labelledby="mapTitle">
-      <h3 id="mapTitle">1. Mapa de telas e navegação</h3>
-      <p>As quatro telas seguem a sequência proposta no PDF. A agenda do dia é a tela inicial do protótipo; a navegação global permite acessar os outros destinos.</p>
-      <div class="screen-map">
-        <div><strong>01 · Lista de serviços (US-02)</strong><ul><li>Consultar serviços, duração e preço</li><li>Acessar cadastro, edição e exclusão contextual</li></ul></div>
-        <div><strong>02 · Cadastro de serviço (US-01, RF01/RF02)</strong><ul><li>Informar nome, duração e preço</li><li>Salvar ou cancelar e retornar à lista</li></ul></div>
-        <div><strong>03 · Novo agendamento (US-03, RF04)</strong><ul><li>Informar cliente, telefone, serviço, data e horário</li><li>Conferir término previsto e validar conflito</li></ul></div>
-        <div><strong>04 · Agenda do dia (US-04, RF05)</strong><ul><li>Selecionar data e consultar atendimentos</li><li>Visualizar horários ocupados e iniciar agendamento</li></ul></div>
-      </div>
-    </section>
-
-    <section class="report-section" aria-labelledby="tokensTitle">
-      <h3 id="tokensTitle">2. Tokens visuais</h3>
-      <div class="token-grid">
-        <div class="token"><span class="swatch" style="background:#8f6b78"></span><span>Malva principal<small>#8F6B78</small></span></div>
-        <div class="token"><span class="swatch" style="background:#765260"></span><span>Malva escuro<small>#765260</small></span></div>
-        <div class="token"><span class="swatch" style="background:#f2e8ec"></span><span>Rosa suave<small>#F2E8EC</small></span></div>
-        <div class="token"><span class="swatch" style="background:#f8f6f4"></span><span>Fundo<small>#F8F6F4</small></span></div>
-        <div class="token"><span class="swatch" style="background:#ffffff"></span><span>Superfície<small>#FFFFFF</small></span></div>
-        <div class="token"><span class="swatch" style="background:#302b2a"></span><span>Texto principal<small>#302B2A</small></span></div>
-        <div class="token"><span class="swatch" style="background:#817875"></span><span>Texto secundário<small>#817875</small></span></div>
-        <div class="token"><span class="swatch" style="background:#e8eee8"></span><span>Verde suave<small>#E8EEE8</small></span></div>
-        <div class="token"><span aria-hidden="true">Aa</span><span>Tipografia<small>Títulos: Georgia · Interface: system-ui</small></span></div>
-        <div class="token"><span aria-hidden="true">↔</span><span>Forma e espaçamento<small>Bordas: 12–18 px · Base: 8 px</small></span></div>
-      </div>
-    </section>
-
-    <section class="report-section" aria-labelledby="heuristicTitle">
-      <h3 id="heuristicTitle">3. Avaliação heurística inicial</h3>
-      <p>Leitura inicial pelas cinco heurísticas citadas no PDF. É uma avaliação preliminar e não substitui testes com usuários.</p>
-      <div class="table-scroll">
-        <table class="heuristic-table">
-          <thead><tr><th>Heurística</th><th>01 Lista de serviços</th><th>02 Cadastro de serviço</th><th>03 Novo agendamento</th><th>04 Agenda do dia</th></tr></thead>
-          <tbody>
-            <tr><th>Visibilidade do status</th><td>Contagem, catálogo e estados vazios visíveis.</td><td>Mensagens confirmam validação e salvamento.</td><td>Resumo do serviço e mensagens de validação, conflito e sucesso.</td><td>Indicadores, programação e estados vazios visíveis.</td></tr>
-            <tr><th>Correspondência com o mundo real</th><td>Nome, duração e preço dos serviços.</td><td>Campos refletem o cadastro usado pelo salão.</td><td>Campos seguem a marcação habitual de um atendimento.</td><td>Data, horários e atendimentos do salão.</td></tr>
-            <tr><th>Controle e liberdade</th><td>Ações de editar e excluir no próprio serviço.</td><td>Cancelar retorna à lista de serviços.</td><td>Cancelar retorna à agenda; cancelamento pode ser confirmado.</td><td>Navegação global e acesso ao novo agendamento.</td></tr>
-            <tr><th>Consistência e padrões</th><td>Cartões e ações seguem os padrões visuais.</td><td>Formulário e botões seguem o padrão visual.</td><td>Formulário e botões seguem o padrão visual.</td><td>Cartões, cores e botões seguem os tokens.</td></tr>
-            <tr><th>Prevenção de erros</th><td>Impede excluir serviço associado a agendamento.</td><td>Valida nome, duração e preço.</td><td>Exige campos e bloqueia sobreposição de horários.</td><td>Data selecionável e orientação para estado vazio.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="report-note">Próximas iterações: testar foco, navegação por teclado e contraste em todos os estados; incluir edição de agendamentos; definir expediente e intervalos; validar formato de telefone; avaliar múltiplos profissionais. Em produção, serão necessários autenticação, autorização, banco remoto e prevenção de conflitos no servidor.</p>
-    </section>
-
-    <section class="report-section" aria-labelledby="limitsTitle">
-      <h3 id="limitsTitle">4. Escopo e limitações do protótipo</h3>
-      <ul class="report-list">
-        <li>As quatro telas têm navegação funcional e se adaptam a desktop e celular.</li>
-        <li>O protótipo permite cadastrar, editar e excluir serviços; criar e cancelar agendamentos; calcular término e verificar sobreposição.</li>
-        <li>Os dados de demonstração ficam no armazenamento local do navegador. Não há backend, login, sincronização entre dispositivos ou integração com WhatsApp.</li>
-        <li>Os dados são fictícios. Não utilizar este protótipo para armazenar informações reais de clientes.</li>
-      </ul>
-    </section>
-  </div>
-</section>
 </body></html>
