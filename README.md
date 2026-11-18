@@ -1,5 +1,34 @@
 # Serena Agenda --- Documento de Requisitos do MVP
 
+## Atividade da Aula 3 - Backend BaaS com Supabase
+
+Este repositório contém os artefatos da integração planejada com Supabase:
+
+- `schema.sql`: DDL das tabelas `servicos` e `agendamentos`, constraints,
+  índices, timestamps, RLS e policies por usuário.
+- `lib/supabase.ts`: inicialização do cliente Supabase para projetos Vite.
+- `.env.example`: modelo das variáveis públicas do front-end.
+- `.gitignore`: impede o versionamento de arquivos `.env`.
+
+### Configuração no Supabase
+
+1. Crie um projeto no Supabase e selecione a região mais próxima.
+2. Abra o **SQL Editor**, execute todo o conteúdo de `schema.sql` e confirme
+   a criação das duas tabelas no Table Editor.
+3. Em **Authentication > Providers**, mantenha Email habilitado.
+4. Em **Project Settings > API**, copie a Project URL e a chave `anon`
+   pública. Nunca use ou publique a chave `service_role`.
+5. Na raiz do projeto Vite, copie `.env.example` para `.env.local` e preencha
+   `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY`.
+6. Instale o SDK com `npm install @supabase/supabase-js`.
+7. Após criar um usuário autenticado, teste INSERT, SELECT, UPDATE e DELETE
+   no Table Editor e pelo SDK.
+
+> A versão `index.html` deste MVP continua disponível como protótipo visual
+> com persistência local. A troca definitiva para o Supabase exige autenticação
+> no front-end e substituição das chamadas a `localStorage` pelas operações do
+> SDK. Nenhuma credencial real foi adicionada ao repositório.
+
 > **Projeto:** Serena Agenda\
 > **Organização:** Serena Salon Studio --- Lages/SC\
 > **Tipo de produto:** Aplicação web responsiva para gestão de serviços
