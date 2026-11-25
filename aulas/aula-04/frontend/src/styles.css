@@ -88,11 +88,25 @@ h1, h2, h3, .brand-kicker, .header-stamp { font-family: "Segoe Print", "Bradley 
 .workspace-content { width: 100%; padding: clamp(1.2rem, 4vw, 3.5rem); }.workspace-footer { display: flex; justify-content: space-between; margin: auto clamp(1.2rem, 4vw, 3.5rem) 0; padding: 1.3rem 0; border-top: 1px dashed var(--line); color: var(--ink-soft); font-size: .8rem; }.workspace-footer span:last-child { color: var(--terracotta); }
 @media (max-width: 760px) { .workspace { display: block; }.sidebar { position: static; height: auto; padding: 1rem; }.identity { padding: 0 0 1rem; }.identity h1 br { display: none; }.identity h1 { font-size: 1.15rem; }.identity-mark { width: 2.2rem; height: 2.2rem; }.sidebar-caption, .sidebar-note { display: none; }.workspace-nav { display: flex; overflow-x: auto; gap: .35rem; padding-bottom: .2rem; }.workspace-link { width: auto; flex: 0 0 auto; padding: .55rem .65rem; }.nav-icon { width: 1.7rem; height: 1.7rem; }.nav-copy small { display: none; }.nav-copy strong { white-space: nowrap; font-size: .8rem; }.workspace-header { padding-block: 1rem; }.workspace-greeting { font-size: .9rem; }.header-action { font-size: .8rem; }.workspace-content { padding-top: 1.5rem; } }
 @media (max-width: 420px) { .header-action { display: none; } }
-@media (max-width: 760px) { .workspace-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }.workspace-link { width: 100%; }.identity h1 br { display: none; } }
+@media (max-width: 760px) {
+  .workspace-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
+  .workspace-link { width: 100%; min-width: 0; min-height: 3.25rem; gap: .45rem; padding: .5rem; }
+  .nav-copy { min-width: 0; }
+  .nav-copy strong { white-space: normal; overflow-wrap: anywhere; line-height: 1.2; }
+  .identity h1 br { display: none; }
+}
 .search-form { display: flex; align-items: flex-end; gap: .65rem; margin-top: 1.4rem; }.search-field { flex: 1; min-width: 0; }.search-form .btn { min-height: 2.9rem; }
 .loan-layout { width: 100%; }.back-link { margin: 0 0 1rem; padding: .4rem 0; border: 0; color: var(--forest-dark); background: transparent; font-weight: 800; cursor: pointer; }.back-link:hover { text-decoration: underline; }.back-link:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }.back-link:disabled { opacity: .6; cursor: wait; }
 .loan-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); }.section-kicker { display: block; margin-bottom: .35rem; color: var(--terracotta); font-size: .68rem; font-weight: 800; letter-spacing: .12em; }.loan-illustration { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; flex: 0 0 auto; border: 1px solid #cfddcd; border-radius: 45% 55% 48% 52%; color: var(--forest); background: #eef4ed; font-size: 1.7rem; }.loan-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .6rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }.loan-note { margin: 1rem .3rem; color: var(--ink-soft); font-size: .85rem; }
 @media (max-width: 640px) { .search-form { flex-direction: column; align-items: stretch; }.loan-actions .btn { flex: 1; }.loan-illustration { width: 2.8rem; height: 2.8rem; } }
+@media (max-width: 420px) {
+  .workspace-content { padding-inline: .75rem; }
+  .workspace-footer { margin-inline: .75rem; }
+  .paper-card { padding: 1rem; }
+  [aria-label='Empréstimos cadastrados'] li { min-width: 0; padding: .85rem; overflow-wrap: anywhere; }
+  [aria-label='Empréstimos cadastrados'] li > div:last-child { flex-wrap: wrap; }
+  [aria-label='Empréstimos cadastrados'] li > div:last-child .btn { width: 100%; }
+}
 
 /* Papel, tinta e pequenos rabiscos que acompanham o acervo. */
 .identity h1 { font-size: 1.45rem; margin: .1rem 0 .35rem; }
