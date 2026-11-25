@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hi-Fi - Biblioteca Comunitária (Aula 02)</title>
+  <style>
+    :root {
+      --color-brand-primary: #004A8D; --color-brand-primary-hover: #003A70;
+      --color-brand-secondary: #F7941D; --color-brand-secondary-hover: #DD7F0F;
+      --color-neutral-bg: #F4F7FB; --color-neutral-surface: #FFFFFF; --color-neutral-border: #D9E1EA;
+      --color-neutral-text: #1F2937; --color-neutral-text-muted: #5B6470; --color-neutral-inverse: #FFFFFF;
+      --color-success: #1F8B4C; --color-success-bg: #E8F6EE;
+      --color-warning: #B45309; --color-warning-bg: #FFF4E5;
+      --color-error: #C62828; --color-error-bg: #FDECEC;
+      --color-info: #1565C0; --color-info-bg: #E8F1FC;
+      --color-focus: #0B5FFF;
+      --font-base: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem; --sp-5: 1.5rem; --sp-6: 2rem;
+      --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-pill: 999px;
+      --shadow-sm: 0 1px 2px rgba(16,24,40,.08); --shadow-md: 0 4px 12px rgba(16,24,40,.12);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font-base); color: var(--color-neutral-text); background: var(--color-neutral-bg); line-height: 1.5; }
+    a { color: var(--color-brand-primary); }
+    :focus-visible { outline: 3px solid rgba(11,95,255,.35); outline-offset: 2px; }
+    .app { max-width: 1120px; margin: 0 auto; padding: var(--sp-4); }
+    .topbar { background: var(--color-brand-primary); color: #fff; border-radius: var(--radius-lg); padding: var(--sp-4) var(--sp-5); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); box-shadow: var(--shadow-md); }
+    .brand { font-size: 1.25rem; font-weight: 800; letter-spacing: .2px; }
+    .brand small { display:block; font-size:.875rem; font-weight:500; opacity:.9; }
+    .nav { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-4) 0; }
+    .tab { background: var(--color-neutral-surface); border: 1px solid var(--color-neutral-border); color: var(--color-neutral-text); padding: .6rem 1rem; border-radius: var(--radius-pill); font-weight: 600; cursor: pointer; }
+    .tab[aria-selected="true"] { background: var(--color-brand-primary); color: #fff; border-color: var(--color-brand-primary); }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .page-head { display:flex; align-items:flex-end; justify-content:space-between; gap: var(--sp-4); margin: var(--sp-2) 0 var(--sp-4); }
+    h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .25rem; font-weight: 800; }
+    .subtitle { margin: 0; color: var(--color-neutral-text-muted); }
+    .card { background: var(--color-neutral-surface); border: 1px solid var(--color-neutral-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--sp-4); margin-bottom: var(--sp-4); }
+    .grid { display: grid; gap: var(--sp-4); }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .row { display:flex; gap: var(--sp-3); flex-wrap: wrap; align-items: end; }
+    label { display:block; font-size:.875rem; font-weight:600; margin-bottom:.35rem; }
+    input, select { width:100%; padding: .7rem .8rem; border:1px solid var(--color-neutral-border); border-radius: var(--radius-sm); font: inherit; background:#fff; }
+    .field { min-width: 220px; flex: 1; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; padding:.7rem 1rem; border-radius: var(--radius-md); border:1px solid transparent; font-weight:600; cursor:pointer; text-decoration:none; }
+    .btn-primary { background: var(--color-brand-primary); color:#fff; }
+    .btn-primary:hover { background: var(--color-brand-primary-hover); }
+    .btn-secondary { background:#fff; color: var(--color-brand-primary); border-color: var(--color-brand-primary); }
+    .btn-ghost { background:#fff; color: var(--color-neutral-text); border-color: var(--color-neutral-border); }
+    .badge { display:inline-block; padding:.2rem .6rem; border-radius: var(--radius-pill); font-size:.75rem; font-weight:700; }
+    .b-disponivel { color: var(--color-success); background: var(--color-success-bg); }
+    .b-emprestado { color: var(--color-info); background: var(--color-info-bg); }
+    .b-atrasado { color: var(--color-error); background: var(--color-error-bg); }
+    .b-devolvido { color: var(--color-neutral-text-muted); background: #EEF2F6; }
+    table { width:100%; border-collapse: collapse; }
+    th, td { text-align:left; padding: .75rem .6rem; border-bottom:1px solid var(--color-neutral-border); vertical-align: middle; }
+    th { font-size:.875rem; color: var(--color-neutral-text-muted); font-weight:600; }
+    .muted { color: var(--color-neutral-text-muted); }
+    .alert { border-radius: var(--radius-md); padding: .8rem 1rem; margin: .5rem 0 0; border:1px solid; }
+    .alert-warn { color:#7A3E06; background: var(--color-warning-bg); border-color:#F3D3A3; }
+    .alert-success { color:#145C33; background: var(--color-success-bg); border-color:#BFE3CC; }
+    .alert-error { color:#8A1C1C; background: var(--color-error-bg); border-color:#F2B8B5; }
+    .kpi { display:flex; gap: var(--sp-3); flex-wrap:wrap; }
+    .kpi .card { margin:0; flex:1; min-width: 160px; }
+    .kpi strong { font-size:1.5rem; display:block; }
+    .section-title { font-size:1.125rem; font-weight:600; margin:0 0 .75rem; }
+    .actions { display:flex; gap:.4rem; flex-wrap:wrap; }
+    .hint { font-size:.875rem; color: var(--color-neutral-text-muted); margin-top:.35rem; }
+    .summary { background:#F0F5FF; border:1px solid #CFE0FF; border-radius: var(--radius-md); padding: var(--sp-4); }
+    .row-highlight { background: #FFF8F8; }
+    .toolbar { display:flex; gap: var(--sp-3); flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom: var(--sp-3); }
+    .tabs-mini { display:flex; gap:.5rem; margin-bottom: var(--sp-3); }
+    .pill { padding:.4rem .8rem; border:1px solid var(--color-neutral-border); border-radius: var(--radius-pill); background:#fff; font-weight:600; font-size:.875rem; }
+    .pill.active { border-color: var(--color-brand-primary); color: var(--color-brand-primary); background:#EAF2FB; }
+    @media (max-width: 720px){ .page-head{flex-direction:column; align-items:flex-start;} th,td{font-size:.9rem;} }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">Biblioteca Comunitária<small>Gestão de Empréstimos · Hi-Fi (Aula 02)</small></div>
+      <div>Atendimento interno</div>
+    </header>
+
+    <nav class="nav" role="tablist" aria-label="Telas">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="t1" id="tab1">1. Acervo e Disponibilidade</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="t2" id="tab2">2. Cadastro</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="t3" id="tab3">3. Registrar Empréstimo</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="t4" id="tab4">4. Empréstimos e Devoluções</button>
+    </nav>
+
+    <!-- TELA 1 -->
+    <section id="t1" class="screen active" role="tabpanel" aria-labelledby="tab1">
+      <div class="page-head">
+        <div>
+          <h1>Acervo e Disponibilidade</h1>
+          <p class="subtitle">Consulte livros por título/código e veja a situação em segundos (RF02, RF06).</p>
+        </div>
+        <div class="actions"><a class="btn btn-secondary" href="#t2" data-goto="t2">Cadastrar livro</a></div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <div class="field" style="flex:2; min-width:280px">
+            <label for="busca">Buscar no acervo (elemento principal)</label>
+            <input id="busca" type="search" placeholder="Título ou código do livro" value="Dom Casmurro" />
+          </div>
+          <div class="field" style="max-width:220px">
+            <label for="filtro">Status</label>
+            <select id="filtro"><option>Todos</option><option>Disponível</option><option>Emprestado</option><option>Atrasado</option></select>
+          </div>
+          <div><button class="btn btn-primary" type="button">Buscar</button></div>
+        </div>
+        <p class="hint">3 resultados encontrados · feedback de status visível</p>
+      </div>
+      <div class="card">
+        <div class="toolbar"><h2 class="section-title">Resultados</h2><span class="muted">Atualizado agora</span></div>
+        <table aria-label="Resultados do acervo">
+          <thead><tr><th>Código</th><th>Título / Autor</th><th>Status</th><th>Prazo/Previsão</th><th>Ação</th></tr></thead>
+          <tbody>
+            <tr><td>LIV-001</td><td><strong>Dom Casmurro</strong><div class="muted">Machado de Assis</div></td><td><span class="badge b-disponivel">Disponível</span></td><td>—</td><td><a class="btn btn-primary" href="#t3" data-goto="t3">Emprestar</a></td></tr>
+            <tr><td>LIV-014</td><td><strong>Dom Casmurro (ed. bolso)</strong><div class="muted">Machado de Assis</div></td><td><span class="badge b-emprestado">Emprestado</span></td><td>Devolver até 02/12/2026</td><td><button class="btn btn-ghost" type="button" disabled>Indisponível</button></td></tr>
+            <tr class="row-highlight"><td>LIV-022</td><td><strong>Vidas Secas</strong><div class="muted">Graciliano Ramos</div></td><td><span class="badge b-atrasado">Atrasado</span></td><td>Vencido em 18/11/2026</td><td><a class="btn btn-secondary" href="#t4" data-goto="t4">Ver devolução</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TELA 2 -->
+    <section id="t2" class="screen" role="tabpanel" aria-labelledby="tab2">
+      <div class="page-head">
+        <div>
+          <h1>Cadastro</h1>
+          <p class="subtitle">Cadastre livros e leitores com dados mínimos e validação (RF01, RF03).</p>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="tabs-mini"><span class="pill active">Livro</span><span class="pill">Leitor</span></div>
+          <h2 class="section-title">Novo Livro</h2>
+          <div class="grid">
+            <div><label for="titulo">Título *</label><input id="titulo" value="O Pequeno Príncipe" /></div>
+            <div><label for="autor">Autor *</label><input id="autor" value="Antoine de Saint-Exupéry" /></div>
+            <div><label for="codigo">Código/Identificador *</label><input id="codigo" value="LIV-031" /></div>
+          </div>
+          <div class="actions" style="margin-top:1rem"><button class="btn btn-primary" type="button">Salvar</button><button class="btn btn-secondary" type="button">Cancelar/Voltar</button></div>
+          <div class="alert alert-success" role="status">Exemplo de feedback: livro cadastrado com sucesso e disponível no acervo.</div>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Novo Leitor</h2>
+          <div class="grid">
+            <div><label for="nome">Nome completo *</label><input id="nome" placeholder="Nome do leitor" /></div>
+            <div><label for="tel">Telefone/Contato *</label><input id="tel" placeholder="(00) 00000-0000" /></div>
+          </div>
+          <p class="hint">Dados pessoais usados apenas para gestão de empréstimos (LGPD).</p>
+          <div class="actions" style="margin-top:1rem"><button class="btn btn-primary" type="button">Salvar</button><button class="btn btn-secondary" type="button">Cancelar/Voltar</button></div>
+          <div class="alert alert-error" role="alert">Exemplo de erro: informe o nome e o telefone para concluir o cadastro.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELA 3 -->
+    <section id="t3" class="screen" role="tabpanel" aria-labelledby="tab3">
+      <div class="page-head">
+        <div>
+          <h1>Registrar Empréstimo</h1>
+          <p class="subtitle">Vincule leitor e livro, confirme prazo de 14 dias e valide regras (RF04, RF06).</p>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h2 class="section-title">Dados do empréstimo</h2>
+          <div class="grid">
+            <div><label for="leitor">Leitor *</label><select id="leitor"><option>Joana Ribeiro (sem pendências)</option><option>Carlos Silva (1 atraso pendente)</option></select></div>
+            <div><label for="livro">Livro (disponível) *</label><select id="livro"><option>LIV-001 — Dom Casmurro</option><option>LIV-031 — O Pequeno Príncipe</option></select></div>
+            <div><label for="retirada">Data de retirada</label><input id="retirada" type="date" value="2026-11-24" /></div>
+            <div><label for="prazo">Prazo de devolução (14 dias)</label><input id="prazo" type="date" value="2026-12-08" /></div>
+          </div>
+          <div class="actions" style="margin-top:1rem"><button class="btn btn-primary" type="button">Confirmar empréstimo</button><button class="btn btn-secondary" type="button">Cancelar/Voltar</button></div>
+          <div class="alert alert-warn" role="alert"><strong>Bloqueio/alerta (RF06):</strong> não é possível emprestar — leitor com atraso pendente ou limite de 3 empréstimos ativos. <a href="#t4" data-goto="t4">Ver empréstimos/atrasos</a>.</div>
+        </div>
+        <div class="card summary">
+          <h2 class="section-title">Resumo (reconhecimento antes da ação)</h2>
+          <p><strong>Leitor:</strong> Joana Ribeiro</p>
+          <p><strong>Livro:</strong> LIV-001 — Dom Casmurro</p>
+          <p><strong>Retirada:</strong> 24/11/2026 · <strong>Prazo:</strong> 08/12/2026 (14 dias)</p>
+          <p><strong>Status inicial:</strong> <span class="badge b-emprestado">Emprestado</span></p>
+          <div class="alert alert-success" role="status">Exemplo de sucesso: empréstimo registrado; exemplar marcado como indisponível.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELA 4 -->
+    <section id="t4" class="screen" role="tabpanel" aria-labelledby="tab4">
+      <div class="page-head">
+        <div>
+          <h1>Empréstimos e Devoluções</h1>
+          <p class="subtitle">Acompanhe status, destaque atrasos e registre devoluções (RF05, RF06).</p>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="card"><span class="muted">Ativos</span><strong>12</strong></div>
+        <div class="card"><span class="muted">Atrasados</span><strong style="color:var(--color-error)">2</strong></div>
+        <div class="card"><span class="muted">Devolvidos (mês)</span><strong>34</strong></div>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <div class="toolbar">
+          <div class="actions"><span class="pill active">Todos</span><span class="pill">Ativos</span><span class="pill">Atrasados</span><span class="pill">Devolvidos</span></div>
+          <div class="field" style="max-width:280px"><label for="buscaEmp">Buscar por leitor/livro</label><input id="buscaEmp" placeholder="Nome ou título/código" /></div>
+        </div>
+        <table aria-label="Lista de empréstimos">
+          <thead><tr><th>Leitor</th><th>Livro</th><th>Retirada</th><th>Prazo</th><th>Status</th><th>Ação</th></tr></thead>
+          <tbody>
+            <tr class="row-highlight"><td>Paulo Mendes</td><td>LIV-022 — Vidas Secas</td><td>04/11/2026</td><td>18/11/2026</td><td><span class="badge b-atrasado">Atrasado</span></td><td><button class="btn btn-primary" type="button">Registrar devolução</button></td></tr>
+            <tr><td>Joana Ribeiro</td><td>LIV-001 — Dom Casmurro</td><td>24/11/2026</td><td>08/12/2026</td><td><span class="badge b-emprestado">Emprestado</span></td><td><button class="btn btn-primary" type="button">Registrar devolução</button></td></tr>
+            <tr><td>Ana Costa</td><td>LIV-010 — Capitu</td><td>01/11/2026</td><td>15/11/2026</td><td><span class="badge b-devolvido">Devolvido</span></td><td><span class="muted">Concluído</span></td></tr>
+          </tbody>
+        </table>
+        <div class="alert alert-success" role="status" style="margin-top:1rem">Exemplo de confirmação: devolução registrada; exemplar disponível no acervo.</div>
+      </div>
+    </section>
+  </div>
+  <script>
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const screens = Array.from(document.querySelectorAll('.screen'));
+    function show(id){
+      screens.forEach(s=>s.classList.toggle('active', s.id===id));
+      tabs.forEach(t=>t.setAttribute('aria-selected', t.getAttribute('aria-controls')===id ? 'true':'false'));
+      history.replaceState(null,'','#'+id);
+    }
+    tabs.forEach(t=>t.addEventListener('click',()=>show(t.getAttribute('aria-controls'))));
+    document.querySelectorAll('[data-goto]').forEach(el=>el.addEventListener('click',(e)=>{e.preventDefault(); show(el.getAttribute('data-goto'));}));
+    const hash = (location.hash||'#t1').replace('#','');
+    if (screens.some(s=>s.id===hash)) show(hash);
+  </script>
+</body>
+</html>

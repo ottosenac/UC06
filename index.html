@@ -1,31 +1,428 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Serena Agenda — Protótipo</title>
-<style>
-:root{--bg:#f8f6f4;--surface:#fff;--ink:#302b2a;--muted:#817875;--line:#eee7e3;--brand:#8f6b78;--brand-dark:#765260;--brand-soft:#f2e8ec;--sage:#e8eee8;--sage-ink:#54705c;--danger:#a64e4e;--shadow:0 12px 32px rgba(55,35,40,.07);--radius:18px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1200px;margin:auto;min-height:100vh;display:grid;grid-template-columns:240px 1fr}.sidebar{background:#fff;border-right:1px solid var(--line);padding:28px 18px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-mark{width:42px;height:42px;border-radius:14px;background:var(--brand-soft);display:grid;place-items:center;color:var(--brand);font-size:23px}.brand-name{font-family:Georgia,serif;font-size:22px;letter-spacing:.2px}.brand-sub{font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;text-align:left;padding:12px 14px;border-radius:12px;color:var(--muted);display:flex;gap:12px;align-items:center}.nav button.active,.nav button:hover{background:var(--brand-soft);color:var(--brand-dark)}.nav .ico{width:20px;text-align:center;font-size:17px}.side-note{margin-top:auto;background:#faf6f7;border-radius:15px;padding:15px;color:var(--muted);font-size:12px}.side-note strong{display:block;color:var(--brand-dark);font-size:13px;margin-bottom:4px}.main{padding:30px 38px 45px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}.eyebrow{color:var(--brand);font-size:11px;text-transform:uppercase;letter-spacing:1.7px;font-weight:700}.page-title{font:32px/1.15 Georgia,serif;margin:5px 0}.sub{color:var(--muted);font-size:13px}.profile{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.avatar{width:36px;height:36px;border-radius:50%;background:var(--sage);display:grid;place-items:center;color:var(--sage-ink);font-weight:700}.content{display:grid;gap:20px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:19px;box-shadow:var(--shadow)}.stat-label{color:var(--muted);font-size:12px}.stat-value{font:28px Georgia,serif;margin:7px 0 2px}.stat-foot{font-size:11px;color:var(--muted)}.btn{border:0;border-radius:12px;padding:11px 16px;background:var(--brand);color:white;font-weight:650;box-shadow:0 5px 12px rgba(143,107,120,.18)}.btn:hover{background:var(--brand-dark)}.btn.secondary{background:#fff;color:var(--brand-dark);border:1px solid var(--line);box-shadow:none}.btn.ghost{background:transparent;color:var(--muted);box-shadow:none;padding:8px}.btn.danger{background:#fbefef;color:var(--danger);box-shadow:none}.datebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.datebar input{max-width:170px}.field{display:grid;gap:6px}.field label{font-size:12px;font-weight:650;color:#625956}.field input,.field select{width:100%;border:1px solid #e8dfdb;background:#fff;border-radius:11px;padding:12px;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}.agenda-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,.8fr);gap:18px}.section-title{font:21px Georgia,serif;margin:0}.timeline{margin-top:16px;display:grid;gap:9px}.appointment{display:grid;grid-template-columns:76px 1fr auto;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:13px}.time{font-weight:700;color:var(--brand-dark);font-size:13px}.appt-name{font-weight:650}.appt-meta{font-size:12px;color:var(--muted)}.pill{background:var(--sage);color:var(--sage-ink);font-size:10px;padding:5px 9px;border-radius:20px;white-space:nowrap}.empty{padding:26px;text-align:center;color:var(--muted);background:#fbf9f8;border:1px dashed #e8dfdb;border-radius:14px}.quick{background:linear-gradient(145deg,#f4eaee,#fbf8f7);border:0}.quick h3{font:22px Georgia,serif;margin:0 0 8px}.quick p{color:var(--muted);font-size:13px}.quick .btn{width:100%;margin-top:8px}.service-list{display:grid;gap:10px}.service-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px;border:1px solid var(--line);border-radius:14px}.service-name{font-weight:700}.service-desc{color:var(--muted);font-size:12px}.price{font-weight:700;color:var(--brand-dark)}.actions{display:flex;gap:5px}.form-card{max-width:720px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.span2{grid-column:span 2}.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}.hint{background:#faf6f7;color:var(--brand-dark);padding:12px 14px;border-radius:12px;font-size:12px}.toast{position:fixed;right:22px;bottom:22px;background:#302b2a;color:white;padding:13px 17px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}.mobile-head{display:none}.small{font-size:12px;color:var(--muted)}.divider{height:1px;background:var(--line);margin:14px 0}
-@media(max-width:800px){.app{display:block}.sidebar{display:none}.main{padding:22px 16px 90px}.topbar{margin-bottom:22px}.profile{display:none}.mobile-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.mobile-head .brand{padding:0}.mobile-nav{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:7px 4px calc(7px + env(safe-area-inset-bottom))}.mobile-nav button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:5px 2px;display:grid;justify-items:center;gap:3px}.mobile-nav button.active{color:var(--brand-dark)}.mobile-nav .ico{font-size:18px}.stats{gap:8px}.card{padding:15px}.stat-value{font-size:24px}.agenda-layout{grid-template-columns:1fr}.quick{order:-1}.page-title{font-size:28px}.appointment{grid-template-columns:58px 1fr auto;padding:10px;gap:8px}.pill{display:none}}
-@media(max-width:430px){.stats{grid-template-columns:1fr 1fr}.stats .card:last-child{grid-column:span 2}.form-grid{grid-template-columns:1fr}.span2{grid-column:auto}.row.stack{align-items:flex-start;flex-direction:column}.appointment{grid-template-columns:52px 1fr}.appointment .actions{grid-column:2}.datebar{width:100%}.datebar input{flex:1;max-width:none}}
-</style>
-<style>
-:where(button,a,input,select,textarea):focus-visible{outline:3px solid #765260;outline-offset:3px}
-@media(min-width:801px){.mobile-nav{display:none}}
-</style></head>
-<body><div class="app"><aside class="sidebar"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><nav class="nav" id="sideNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Novo agendamento</button><button data-screen="novo-servico"><span class="ico">♡</span>Novo serviço</button></nav><div class="side-note"><strong>Um dia mais leve começa aqui.</strong>Organize seus atendimentos com carinho e simplicidade.</div></aside>
-<main class="main"><div class="mobile-head"><div class="brand"><div class="brand-mark">✿</div><div><div class="brand-name">Serena</div><div class="brand-sub">Salon Studio</div></div></div><div class="avatar">M</div></div><header class="topbar"><div><div class="eyebrow">Serena Salon Studio · Lages/SC</div><h1 class="page-title" id="pageTitle">Sua agenda</h1><div class="sub" id="pageSub">Acompanhe seus atendimentos em um só lugar.</div></div><div class="profile"><div class="avatar">M</div><span>Mariana<br><b style="color:var(--ink)">Proprietária</b></span></div></header><section class="content" id="screen"></section></main></div>
-<nav class="mobile-nav" id="mobileNav"><button data-screen="agenda" class="active"><span class="ico">▦</span>Agenda</button><button data-screen="servicos"><span class="ico">✧</span>Serviços</button><button data-screen="agendamento"><span class="ico">＋</span>Agendar</button><button data-screen="novo-servico"><span class="ico">♡</span>Serviço</button></nav><div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-const $=s=>document.querySelector(s);const today=()=>new Date().toISOString().slice(0,10);let screen='agenda';let selectedDate=today();let editingService=null;
-let services=JSON.parse(localStorage.getItem('serena_services')||'null')||[{id:1,name:'Corte feminino',duration:60,price:85},{id:2,name:'Escova',duration:45,price:55},{id:3,name:'Coloração',duration:120,price:180},{id:4,name:'Manicure',duration:45,price:40}];
-let appointments=JSON.parse(localStorage.getItem('serena_appointments')||'null')||[{id:1,name:'Ana Clara',phone:'49999990001',serviceId:1,date:today(),time:'09:00'},{id:2,name:'Beatriz Lima',phone:'49999990002',serviceId:2,date:today(),time:'10:30'},{id:3,name:'Julia Martins',phone:'49999990003',serviceId:4,date:today(),time:'14:00'}];
-function persist(){localStorage.setItem('serena_services',JSON.stringify(services));localStorage.setItem('serena_appointments',JSON.stringify(appointments))}function money(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}function duration(id){return services.find(s=>s.id==id)?.duration||0}function endAt(time,dur){let [h,m]=time.split(':').map(Number);let n=h*60+m+dur;return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')}function mins(t){let [h,m]=t.split(':').map(Number);return h*60+m}function toast(msg){let t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}function go(s){screen=s;render();document.querySelectorAll('[data-screen]').forEach(b=>b.classList.toggle('active',b.dataset.screen===s));window.scrollTo(0,0)}
-document.querySelectorAll('[data-screen]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.screen)));
-function header(title,sub){$('#pageTitle').textContent=title;$('#pageSub').textContent=sub}
-function render(){if(screen==='agenda')agenda();if(screen==='servicos')serviceList();if(screen==='agendamento')bookingForm();if(screen==='novo-servico')serviceForm()}
-function agenda(){header('Sua agenda','Acompanhe seus atendimentos em um só lugar.');let list=appointments.filter(a=>a.date===selectedDate).sort((a,b)=>a.time.localeCompare(b.time));let busy=list.length;$('#screen').innerHTML=`<div class="stats"><div class="card"><div class="stat-label">Atendimentos do dia</div><div class="stat-value">${busy.toString().padStart(2,'0')}</div><div class="stat-foot">Na data selecionada</div></div><div class="card"><div class="stat-label">Serviços ativos</div><div class="stat-value">${services.length.toString().padStart(2,'0')}</div><div class="stat-foot">No seu catálogo</div></div><div class="card"><div class="stat-label">Próximo horário</div><div class="stat-value" style="font-size:23px">${list[0]?.time||'—'}</div><div class="stat-foot">${list[0]?.name||'Agenda livre'}</div></div></div><div class="agenda-layout"><div class="card"><div class="row stack"><div><h2 class="section-title">Programação do dia</h2><div class="small">Confira seus horários e atendimentos</div></div><div class="datebar"><input class="field" aria-label="Data da agenda" type="date" id="agendaDate" value="${selectedDate}"><button class="btn" onclick="go('agendamento')">＋ Agendar</button></div></div><div class="timeline">${list.length?list.map(a=>{let s=services.find(x=>x.id==a.serviceId);return `<div class="appointment"><div class="time">${a.time}<br><span class="small">até ${endAt(a.time,duration(a.serviceId))}</span></div><div><div class="appt-name">${esc(a.name)}</div><div class="appt-meta">${esc(s?.name||'Serviço removido')} · ${esc(a.phone)}</div></div><div class="actions"><span class="pill">Confirmado</span><button class="btn ghost" aria-label="Cancelar agendamento de ${esc(a.name)}" onclick="cancelAppt(${a.id})">⋯</button></div></div>`}).join(''):'<div class="empty">Nenhum atendimento nesta data.<br><span class="small">Aproveite para organizar novos horários.</span></div>'}</div></div><div class="card quick"><h3>Seu espaço, no seu ritmo.</h3><p>Registre um novo atendimento em poucos passos. O sistema verifica automaticamente se o horário está disponível.</p><button class="btn" onclick="go('agendamento')">＋ Novo agendamento</button><div class="divider"></div><div class="row"><span class="small">Catálogo de serviços</span><button class="btn secondary" onclick="go('servicos')">Ver serviços →</button></div></div></div>`;$('#agendaDate').addEventListener('change',e=>{selectedDate=e.target.value||today();agenda()})}
-function serviceList(){header('Seus serviços','Mantenha seu catálogo sempre atualizado.');$('#screen').innerHTML=`<div class="row"><div><h2 class="section-title">Catálogo de serviços</h2><div class="small">${services.length} serviço(s) cadastrado(s)</div></div><button class="btn" onclick="editingService=null;go('novo-servico')">＋ Adicionar serviço</button></div><div class="card"><div class="service-list">${services.length?services.map(s=>`<div class="service-item"><div><div class="service-name">${esc(s.name)}</div><div class="service-desc">${s.duration} minutos</div></div><div class="row"><div class="price">${money(s.price)}</div><div class="actions"><button class="btn secondary" onclick="editService(${s.id})">Editar</button><button class="btn danger" onclick="deleteService(${s.id})">Excluir</button></div></div></div>`).join(''):'<div class="empty">Nenhum serviço cadastrado.</div>'}</div></div>`}
-function serviceForm(){let s=editingService?services.find(x=>x.id===editingService):null;header(s?'Editar serviço':'Novo serviço',s?'Atualize as informações do serviço.':'Adicione um serviço ao catálogo do salão.');$('#screen').innerHTML=`<div class="card form-card"><div class="row"><div><h2 class="section-title">${s?'Editar informações':'Informações do serviço'}</h2><div class="small">Preencha os dados abaixo.</div></div><span class="pill">Catálogo</span></div><form id="serviceForm" novalidate><div class="form-grid" style="margin-top:22px"><div class="field span2"><label for="serviceName">Nome do serviço</label><input id="serviceName" minlength="3" required placeholder="Ex.: Corte feminino" value="${s?esc(s.name):''}"></div><div class="field"><label for="serviceDuration">Duração (minutos)</label><input id="serviceDuration" type="number" min="10" max="480" step="1" required placeholder="Ex.: 60" value="${s?s.duration:''}"></div><div class="field"><label for="servicePrice">Preço (R$)</label><input id="servicePrice" type="number" min="0.01" step="0.01" required placeholder="Ex.: 85,00" value="${s?s.price:''}"></div></div><div class="hint" style="margin-top:18px">A duração será utilizada para calcular o horário final e evitar conflitos na agenda.</div><div class="form-actions"><button type="button" class="btn secondary" onclick="go('servicos')">Cancelar</button><button class="btn" type="submit">Salvar serviço</button></div></form></div>`;$('#serviceForm').addEventListener('submit',e=>{e.preventDefault();let name=$('#serviceName').value.trim(),dur=Number($('#serviceDuration').value),price=Number($('#servicePrice').value);if(name.length<3){toast('Informe um nome com pelo menos 3 caracteres.');$('#serviceName').focus();return}if(!Number.isInteger(dur)||dur<10||dur>480){toast('A duração deve ser de 10 a 480 minutos.');return}if(!(price>0)){toast('Informe um preço maior que zero.');return}if(s){Object.assign(s,{name,duration:dur,price})}else services.push({id:Date.now(),name,duration:dur,price});persist();editingService=null;toast('Serviço salvo com sucesso!');go('servicos')})}
-function bookingForm(){header('Novo agendamento','Registre um atendimento e mantenha sua agenda organizada.');let opts=services.map(s=>`<option value="${s.id}">${esc(s.name)} · ${s.duration} min · ${money(s.price)}</option>`).join('');$('#screen').innerHTML=`<div class="card form-card"><div class="row"><div><h2 class="section-title">Dados do atendimento</h2><div class="small">Os campos marcados são obrigatórios.</div></div><span class="pill">Novo horário</span></div>${services.length?`<form id="bookingForm" novalidate><div class="form-grid" style="margin-top:22px"><div class="field span2"><label for="clientName">Nome da cliente</label><input id="clientName" required minlength="3" placeholder="Nome completo"></div><div class="field span2"><label for="clientPhone">Telefone</label><input id="clientPhone" required type="tel" placeholder="(49) 99999-9999"></div><div class="field span2"><label for="bookingService">Serviço</label><select id="bookingService" required>${opts}</select></div><div class="field"><label for="bookingDate">Data</label><input id="bookingDate" type="date" required min="${today()}" value="${selectedDate}"></div><div class="field"><label for="bookingTime">Horário de início</label><input id="bookingTime" type="time" required value="09:00"></div></div><div class="hint" id="durationHint" style="margin-top:18px">Selecione o serviço para conferir a duração e o horário final.</div><div class="form-actions"><button type="button" class="btn secondary" onclick="go('agenda')">Cancelar</button><button class="btn" type="submit">Confirmar agendamento</button></div></form>`:'<div class="empty" style="margin-top:18px">Cadastre pelo menos um serviço antes de criar um agendamento.<br><br><button class="btn" onclick="go(\'novo-servico\')">Cadastrar serviço</button></div>'}</div>`;if(!services.length)return;function hint(){let s=services.find(x=>x.id==$('#bookingService').value);$('#durationHint').textContent=s?`Duração: ${s.duration} minutos · Término previsto: ${endAt($('#bookingTime').value||'09:00',s.duration)} · ${money(s.price)}`:''}$('#bookingService').addEventListener('change',hint);$('#bookingTime').addEventListener('input',hint);hint();$('#bookingForm').addEventListener('submit',e=>{e.preventDefault();let name=$('#clientName').value.trim(),phone=$('#clientPhone').value.trim(),sid=Number($('#bookingService').value),date=$('#bookingDate').value,time=$('#bookingTime').value,s=services.find(x=>x.id===sid);if(name.length<3||!phone||!date||!time||!s){toast('Confira os campos obrigatórios.');return}let start=mins(time),end=start+s.duration;let conflict=appointments.some(a=>a.date===date&&(()=>{let aStart=mins(a.time),aEnd=aStart+duration(a.serviceId);return start<aEnd&&end>aStart})());if(conflict){toast('Este horário conflita com outro atendimento.');return}appointments.push({id:Date.now(),name,phone,serviceId:sid,date,time});selectedDate=date;persist();toast('Agendamento realizado com sucesso!');go('agenda')})}
-function editService(id){editingService=id;go('novo-servico')}function deleteService(id){if(appointments.some(a=>a.serviceId===id)){toast('Este serviço possui agendamentos vinculados e não pode ser excluído.');return}if(confirm('Deseja realmente excluir este serviço?')){services=services.filter(s=>s.id!==id);persist();serviceList();toast('Serviço excluído.')}}function cancelAppt(id){let a=appointments.find(x=>x.id===id);if(!a)return;if(confirm(`Deseja cancelar o agendamento de ${a.name}?`)){appointments=appointments.filter(x=>x.id!==id);persist();agenda();toast('Agendamento cancelado.')}}function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}render();
-</script>
-</body></html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hi-Fi - Biblioteca Comunitária (Aula 02)</title>
+  <style>
+    :root {
+      --color-brand-primary: #004A8D; --color-brand-primary-hover: #003A70;
+      --color-brand-secondary: #F7941D; --color-brand-secondary-hover: #DD7F0F;
+      --color-neutral-bg: #F4F7FB; --color-neutral-surface: #FFFFFF; --color-neutral-border: #D9E1EA;
+      --color-neutral-text: #1F2937; --color-neutral-text-muted: #5B6470; --color-neutral-inverse: #FFFFFF;
+      --color-success: #1F8B4C; --color-success-bg: #E8F6EE;
+      --color-warning: #B45309; --color-warning-bg: #FFF4E5;
+      --color-error: #C62828; --color-error-bg: #FDECEC;
+      --color-info: #1565C0; --color-info-bg: #E8F1FC;
+      --color-focus: #0B5FFF;
+      --font-base: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem; --sp-5: 1.5rem; --sp-6: 2rem;
+      --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-pill: 999px;
+      --shadow-sm: 0 1px 2px rgba(16,24,40,.08); --shadow-md: 0 4px 12px rgba(16,24,40,.12);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font-base); color: var(--color-neutral-text); background: var(--color-neutral-bg); line-height: 1.5; }
+    a { color: var(--color-brand-primary); }
+    :focus-visible { outline: 3px solid rgba(11,95,255,.35); outline-offset: 2px; }
+    .app { max-width: 1120px; margin: 0 auto; padding: var(--sp-4); }
+    .topbar { background: var(--color-brand-primary); color: #fff; border-radius: var(--radius-lg); padding: var(--sp-4) var(--sp-5); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); box-shadow: var(--shadow-md); }
+    .brand { font-size: 1.25rem; font-weight: 800; letter-spacing: .2px; }
+    .brand small { display:block; font-size:.875rem; font-weight:500; opacity:.9; }
+    .nav { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-4) 0; }
+    .tab { background: var(--color-neutral-surface); border: 1px solid var(--color-neutral-border); color: var(--color-neutral-text); padding: .6rem 1rem; border-radius: var(--radius-pill); font-weight: 600; cursor: pointer; }
+    .tab[aria-selected="true"] { background: var(--color-brand-primary); color: #fff; border-color: var(--color-brand-primary); }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .page-head { display:flex; align-items:flex-end; justify-content:space-between; gap: var(--sp-4); margin: var(--sp-2) 0 var(--sp-4); }
+    h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .25rem; font-weight: 800; }
+    .subtitle { margin: 0; color: var(--color-neutral-text-muted); }
+    .card { background: var(--color-neutral-surface); border: 1px solid var(--color-neutral-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--sp-4); margin-bottom: var(--sp-4); }
+    .grid { display: grid; gap: var(--sp-4); }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .row { display:flex; gap: var(--sp-3); flex-wrap: wrap; align-items: end; }
+    label { display:block; font-size:.875rem; font-weight:600; margin-bottom:.35rem; }
+    input, select { width:100%; padding: .7rem .8rem; border:1px solid var(--color-neutral-border); border-radius: var(--radius-sm); font: inherit; background:#fff; }
+    .field { min-width: 220px; flex: 1; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; padding:.7rem 1rem; border-radius: var(--radius-md); border:1px solid transparent; font-weight:600; cursor:pointer; text-decoration:none; }
+    .btn-primary { background: var(--color-brand-primary); color:#fff; }
+    .btn-primary:hover { background: var(--color-brand-primary-hover); }
+    .btn-secondary { background:#fff; color: var(--color-brand-primary); border-color: var(--color-brand-primary); }
+    .btn-ghost { background:#fff; color: var(--color-neutral-text); border-color: var(--color-neutral-border); }
+    .badge { display:inline-block; padding:.2rem .6rem; border-radius: var(--radius-pill); font-size:.75rem; font-weight:700; }
+    .b-disponivel { color: var(--color-success); background: var(--color-success-bg); }
+    .b-emprestado { color: var(--color-info); background: var(--color-info-bg); }
+    .b-atrasado { color: var(--color-error); background: var(--color-error-bg); }
+    .b-devolvido { color: var(--color-neutral-text-muted); background: #EEF2F6; }
+    table { width:100%; border-collapse: collapse; }
+    th, td { text-align:left; padding: .75rem .6rem; border-bottom:1px solid var(--color-neutral-border); vertical-align: middle; }
+    th { font-size:.875rem; color: var(--color-neutral-text-muted); font-weight:600; }
+    .muted { color: var(--color-neutral-text-muted); }
+    .alert { border-radius: var(--radius-md); padding: .8rem 1rem; margin: .5rem 0 0; border:1px solid; }
+    .alert-warn { color:#7A3E06; background: var(--color-warning-bg); border-color:#F3D3A3; }
+    .alert-success { color:#145C33; background: var(--color-success-bg); border-color:#BFE3CC; }
+    .alert-error { color:#8A1C1C; background: var(--color-error-bg); border-color:#F2B8B5; }
+    .kpi { display:flex; gap: var(--sp-3); flex-wrap:wrap; }
+    .kpi .card { margin:0; flex:1; min-width: 160px; }
+    .kpi strong { font-size:1.5rem; display:block; }
+    .section-title { font-size:1.125rem; font-weight:600; margin:0 0 .75rem; }
+    .actions { display:flex; gap:.4rem; flex-wrap:wrap; }
+    .hint { font-size:.875rem; color: var(--color-neutral-text-muted); margin-top:.35rem; }
+    .summary { background:#F0F5FF; border:1px solid #CFE0FF; border-radius: var(--radius-md); padding: var(--sp-4); }
+    .row-highlight { background: #FFF8F8; }
+    .toolbar { display:flex; gap: var(--sp-3); flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom: var(--sp-3); }
+    .tabs-mini { display:flex; gap:.5rem; margin-bottom: var(--sp-3); }
+    .pill { padding:.4rem .8rem; border:1px solid var(--color-neutral-border); border-radius: var(--radius-pill); background:#fff; font-weight:600; font-size:.875rem; }
+    .pill.active { border-color: var(--color-brand-primary); color: var(--color-brand-primary); background:#EAF2FB; }
+    @media (max-width: 720px){ .page-head{flex-direction:column; align-items:flex-start;} th,td{font-size:.9rem;} }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">Biblioteca Comunitária<small>Gestão de Empréstimos · Hi-Fi (Aula 02)</small></div>
+      <div>Atendimento interno</div>
+    </header>
+
+    <nav class="nav" role="tablist" aria-label="Telas">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="t1" id="tab1">1. Acervo e Disponibilidade</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="t2" id="tab2">2. Cadastro</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="t3" id="tab3">3. Registrar Empréstimo</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="t4" id="tab4">4. Empréstimos e Devoluções</button>
+    </nav>
+
+    <!-- TELA 1 -->
+    <section id="t1" class="screen active" role="tabpanel" aria-labelledby="tab1">
+      <div class="page-head">
+        <div>
+          <h1>Acervo e Disponibilidade</h1>
+          <p class="subtitle">Consulte livros por título/código e veja a situação em segundos (RF02, RF06).</p>
+        </div>
+        <div class="actions"><a class="btn btn-secondary" href="#t2" data-goto="t2">Cadastrar livro</a></div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <div class="field" style="flex:2; min-width:280px">
+            <label for="busca">Buscar no acervo (elemento principal)</label>
+            <input id="busca" type="search" placeholder="Título ou código do livro" value="" />
+          </div>
+          <div class="field" style="max-width:220px">
+            <label for="filtro">Status</label>
+            <select id="filtro"><option value="">Todos</option><option value="disponivel">Disponível</option><option value="emprestado">Emprestado</option><option value="atrasado">Atrasado</option></select>
+          </div>
+          <div><button class="btn btn-primary" type="button" id="btn-buscar">Buscar</button></div>
+        </div>
+        <p class="hint" id="acervo-hint">Configure o Supabase (supabase-config.js ou .env conforme ambiente) para carregar o acervo.</p>
+        <div id="acervo-feedback" class="alert" role="status" style="display:none"></div>
+      </div>
+      <div class="card">
+        <div class="toolbar"><h2 class="section-title">Resultados</h2><span class="muted" id="acervo-atualizado">—</span></div>
+        <table aria-label="Resultados do acervo">
+          <thead><tr><th>Código</th><th>Título / Autor</th><th>Status</th><th>Prazo/Previsão</th><th>Ação</th></tr></thead>
+          <tbody id="acervo-tbody">
+            <tr><td colspan="5" class="muted">Nenhum dado carregado. Integre o Supabase e use “Inserir 3 livros (teste)” para validar CRUD.</td></tr>
+          </tbody>
+        </table>
+        <div class="actions" style="margin-top:1rem">
+          <button class="btn btn-secondary" type="button" id="btn-seed-livros">Inserir 3 livros (teste)</button>
+          <button class="btn btn-ghost" type="button" id="btn-atualizar-acervo">Atualizar lista</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELA 2 -->
+    <section id="t2" class="screen" role="tabpanel" aria-labelledby="tab2">
+      <div class="page-head">
+        <div>
+          <h1>Cadastro</h1>
+          <p class="subtitle">Cadastre livros e leitores com dados mínimos e validação (RF01, RF03).</p>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="tabs-mini"><span class="pill active">Livro</span><span class="pill">Leitor</span></div>
+          <h2 class="section-title">Novo Livro</h2>
+          <div class="grid">
+            <div><label for="titulo">Título *</label><input id="titulo" value="O Pequeno Príncipe" /></div>
+            <div><label for="autor">Autor *</label><input id="autor" value="Antoine de Saint-Exupéry" /></div>
+            <div><label for="codigo">Código/Identificador *</label><input id="codigo" value="LIV-031" /></div>
+          </div>
+          <div class="actions" style="margin-top:1rem"><button class="btn btn-primary" type="button" id="btn-salvar-livro">Salvar livro</button><button class="btn btn-secondary" type="button" id="btn-limpar-livro">Limpar</button></div>
+          <div id="livro-feedback" class="alert" role="status" style="display:none"></div>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Novo Leitor</h2>
+          <div class="grid">
+            <div><label for="nome">Nome completo *</label><input id="nome" placeholder="Nome do leitor" /></div>
+            <div><label for="tel">Telefone/Contato *</label><input id="tel" placeholder="(00) 00000-0000" /></div>
+          </div>
+          <p class="hint">Dados pessoais usados apenas para gestão de empréstimos (LGPD).</p>
+          <div class="actions" style="margin-top:1rem"><button class="btn btn-primary" type="button" id="btn-salvar-leitor">Salvar leitor</button><button class="btn btn-secondary" type="button" id="btn-limpar-leitor">Limpar</button></div>
+          <div id="leitor-feedback" class="alert" role="status" style="display:none"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELA 3 -->
+    <section id="t3" class="screen" role="tabpanel" aria-labelledby="tab3">
+      <div class="page-head">
+        <div>
+          <h1>Registrar Empréstimo</h1>
+          <p class="subtitle">Vincule leitor e livro, confirme prazo de 14 dias e valide regras (RF04, RF06).</p>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h2 class="section-title">Dados do empréstimo</h2>
+          <div class="grid">
+            <div><label for="leitor">Leitor *</label><select id="leitor"><option>Joana Ribeiro (sem pendências)</option><option>Carlos Silva (1 atraso pendente)</option></select></div>
+            <div><label for="livro">Livro (disponível) *</label><select id="livro"><option>LIV-001 — Dom Casmurro</option><option>LIV-031 — O Pequeno Príncipe</option></select></div>
+            <div><label for="retirada">Data de retirada</label><input id="retirada" type="date" value="2026-11-24" /></div>
+            <div><label for="prazo">Prazo de devolução (14 dias)</label><input id="prazo" type="date" value="2026-12-08" /></div>
+          </div>
+          <div class="actions" style="margin-top:1rem"><button class="btn btn-primary" type="button" id="btn-confirmar-emprestimo">Confirmar empréstimo</button><button class="btn btn-secondary" type="button" data-goto="t1">Cancelar/Voltar</button></div>
+          <div id="emprestimo-feedback" class="alert" role="status" style="display:none"></div>
+        </div>
+        <div class="card summary">
+          <h2 class="section-title">Resumo (reconhecimento antes da ação)</h2>
+          <p><strong>Leitor:</strong> Joana Ribeiro</p>
+          <p><strong>Livro:</strong> LIV-001 — Dom Casmurro</p>
+          <p><strong>Retirada:</strong> 24/11/2026 · <strong>Prazo:</strong> 08/12/2026 (14 dias)</p>
+          <p><strong>Status inicial:</strong> <span class="badge b-emprestado">Emprestado</span></p>
+          <div class="alert alert-success" role="status">Exemplo de sucesso: empréstimo registrado; exemplar marcado como indisponível.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELA 4 -->
+    <section id="t4" class="screen" role="tabpanel" aria-labelledby="tab4">
+      <div class="page-head">
+        <div>
+          <h1>Empréstimos e Devoluções</h1>
+          <p class="subtitle">Acompanhe status, destaque atrasos e registre devoluções (RF05, RF06).</p>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="card"><span class="muted">Ativos</span><strong id="kpi-ativos">0</strong></div>
+        <div class="card"><span class="muted">Atrasados</span><strong id="kpi-atrasados" style="color:var(--color-error)">0</strong></div>
+        <div class="card"><span class="muted">Devolvidos</span><strong id="kpi-devolvidos">0</strong></div>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <div class="toolbar">
+          <div class="actions"><span class="pill active">Todos</span></div>
+          <div class="field" style="max-width:280px"><label for="buscaEmp">Buscar por leitor/livro</label><input id="buscaEmp" placeholder="Nome ou título/código" /></div>
+        </div>
+        <table aria-label="Lista de empréstimos">
+          <thead><tr><th>Leitor</th><th>Livro</th><th>Retirada</th><th>Prazo</th><th>Status</th><th>Ação</th></tr></thead>
+          <tbody id="emprestimos-tbody">
+            <tr><td colspan="6" class="muted">Nenhum empréstimo carregado.</td></tr>
+          </tbody>
+        </table>
+        <div id="devolucao-feedback" class="alert" role="status" style="display:none"></div>
+      </div>
+    </section>
+  </div>
+  <script src="supabase-config.js" onerror="/* config opcional ausente */"></script>
+  <script>
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const screens = Array.from(document.querySelectorAll('.screen'));
+    function show(id){
+      screens.forEach(s=>s.classList.toggle('active', s.id===id));
+      tabs.forEach(t=>t.setAttribute('aria-selected', t.getAttribute('aria-controls')===id ? 'true':'false'));
+      history.replaceState(null,'','#'+id);
+      document.dispatchEvent(new CustomEvent('screen:show', { detail: { id } }));
+    }
+    tabs.forEach(t=>t.addEventListener('click',()=>show(t.getAttribute('aria-controls'))));
+    document.querySelectorAll('[data-goto]').forEach(el=>el.addEventListener('click',(e)=>{e.preventDefault(); show(el.getAttribute('data-goto'));}));
+    const hash = (location.hash||'#t1').replace('#','');
+    if (screens.some(s=>s.id===hash)) show(hash);
+  </script>
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const cfg = window.__SUPABASE_CONFIG__ || {};
+    const supabase = (cfg.url && cfg.anonKey) ? createClient(cfg.url, cfg.anonKey) : null;
+
+    const el = (id) => document.getElementById(id);
+    const fmtDate = (d) => d ? new Date(d + 'T00:00:00').toLocaleDateString('pt-BR') : '—';
+    const todayISO = () => new Date().toISOString().slice(0,10);
+
+    function setFeedback(id, type, msg) {
+      const node = el(id);
+      if (!node) return;
+      node.style.display = msg ? 'block' : 'none';
+      node.className = 'alert ' + (type === 'error' ? 'alert-error' : type === 'warn' ? 'alert-warn' : 'alert-success');
+      node.textContent = msg || '';
+    }
+
+    function badge(status) {
+      const map = { disponivel: ['Disponível','b-disponivel'], emprestado: ['Emprestado','b-emprestado'], atrasado: ['Atrasado','b-atrasado'], devolvido: ['Devolvido','b-devolvido'], em_dia: ['Em dia','b-emprestado'] };
+      const [label, cls] = map[status] || [status || '—', 'b-emprestado'];
+      return `<span class="badge ${cls}">${label}</span>`;
+    }
+
+    async function requireSupabase(feedbackId) {
+      if (supabase) return true;
+      setFeedback(feedbackId || 'acervo-feedback', 'error', 'Supabase não configurado. Copie supabase-config.example.js para supabase-config.js (gitignored) e informe URL e anon key do projeto.');
+      return false;
+    }
+
+    async function carregarAcervo() {
+      if (!supabase) {
+        el('acervo-hint').textContent = 'Supabase não configurado. Defina supabase-config.js para testar CRUD.';
+        return;
+      }
+      const busca = (el('busca')?.value || '').trim();
+      const filtro = el('filtro')?.value || '';
+      let q = supabase.from('livros').select('*').order('titulo');
+      if (busca) q = q.or(`titulo.ilike.%${busca}%,codigo.ilike.%${busca}%`);
+      if (filtro) q = q.eq('status', filtro);
+      const { data, error } = await q;
+      const tbody = el('acervo-tbody');
+      if (error) { setFeedback('acervo-feedback','error','Erro ao listar livros: ' + error.message); return; }
+      setFeedback('acervo-feedback','', '');
+      el('acervo-hint').textContent = `${data.length} resultado(s) encontrado(s).`;
+      el('acervo-atualizado').textContent = 'Atualizado ' + new Date().toLocaleTimeString('pt-BR');
+      if (!data.length) { tbody.innerHTML = '<tr><td colspan="5" class="muted">Nenhum livro encontrado.</td></tr>'; return; }
+      tbody.innerHTML = data.map(l => {
+        const acoes = l.status === 'disponivel'
+          ? `<button class="btn btn-ghost" type="button" data-edit-livro="${l.id}">Editar</button> <button class="btn btn-ghost" type="button" data-del-livro="${l.id}">Excluir</button>`
+          : `<button class="btn btn-ghost" type="button" data-edit-livro="${l.id}">Editar</button> <button class="btn btn-ghost" type="button" disabled>Excluir</button>`;
+        return `<tr><td>${l.codigo}</td><td><strong>${l.titulo}</strong><div class="muted">${l.autor}</div></td><td>${badge(l.status)}</td><td>${l.previsao_devolucao ? fmtDate(l.previsao_devolucao) : '—'}</td><td>${acoes}</td></tr>`;
+      }).join('');
+    }
+
+    async function seedLivros() {
+      if (!(await requireSupabase('acervo-feedback'))) return;
+      const livros = [
+        { codigo: 'LIV-001', titulo: 'Dom Casmurro', autor: 'Machado de Assis', status: 'disponivel' },
+        { codigo: 'LIV-014', titulo: 'Capitães da Areia', autor: 'Jorge Amado', status: 'disponivel' },
+        { codigo: 'LIV-022', titulo: 'Vidas Secas', autor: 'Graciliano Ramos', status: 'disponivel' }
+      ];
+      const { error } = await supabase.from('livros').upsert(livros, { onConflict: 'codigo' });
+      if (error) setFeedback('acervo-feedback','error','Erro ao inserir livros de teste: ' + error.message);
+      else { setFeedback('acervo-feedback','success','3 livros de teste inseridos/atualizados (CRUD: create).'); await carregarAcervo(); }
+    }
+
+    async function salvarLivro() {
+      if (!(await requireSupabase('livro-feedback'))) return;
+      const titulo = el('titulo').value.trim(), autor = el('autor').value.trim(), codigo = el('codigo').value.trim();
+      if (!titulo || !autor || !codigo) { setFeedback('livro-feedback','error','Preencha título, autor e código.'); return; }
+      const id = el('titulo').dataset.editId;
+      let error;
+      if (id) ({ error } = await supabase.from('livros').update({ titulo, autor, codigo }).eq('id', Number(id)));
+      else ({ error } = await supabase.from('livros').insert({ titulo, autor, codigo, status: 'disponivel' }));
+      if (error) setFeedback('livro-feedback','error','Erro ao salvar livro: ' + error.message);
+      else { setFeedback('livro-feedback','success', id ? 'Livro atualizado (CRUD: update).' : 'Livro cadastrado (CRUD: create).'); delete el('titulo').dataset.editId; await carregarAcervo(); }
+    }
+
+    async function salvarLeitor() {
+      if (!(await requireSupabase('leitor-feedback'))) return;
+      const nome = el('nome').value.trim(), telefone = el('tel').value.trim();
+      if (!nome || !telefone) { setFeedback('leitor-feedback','error','Informe nome e telefone.'); return; }
+      const { error } = await supabase.from('leitores').insert({ nome, telefone });
+      if (error) setFeedback('leitor-feedback','error','Erro ao salvar leitor: ' + error.message);
+      else { setFeedback('leitor-feedback','success','Leitor cadastrado com sucesso (CRUD: create).'); el('nome').value=''; el('tel').value=''; await carregarFormEmprestimo(); }
+    }
+
+    async function carregarFormEmprestimo() {
+      if (!supabase) return;
+      const { data: leitores } = await supabase.from('leitores').select('id,nome').order('nome');
+      const { data: livros } = await supabase.from('livros').select('id,codigo,titulo').eq('status','disponivel').order('titulo');
+      const selLeitor = el('leitor'); const selLivro = el('livro');
+      if (selLeitor) selLeitor.innerHTML = (leitores||[]).length ? leitores.map(l=>`<option value="${l.id}">${l.nome}</option>`).join('') : '<option value="">Cadastre um leitor</option>';
+      if (selLivro) selLivro.innerHTML = (livros||[]).length ? livros.map(l=>`<option value="${l.id}">${l.codigo} — ${l.titulo}</option>`).join('') : '<option value="">Nenhum livro disponível</option>';
+      const ret = el('retirada'), prazo = el('prazo');
+      if (ret && !ret.value) ret.value = todayISO();
+      if (ret && prazo) { const d = new Date(ret.value+'T00:00:00'); d.setDate(d.getDate()+14); prazo.value = d.toISOString().slice(0,10); }
+    }
+
+    async function confirmarEmprestimo() {
+      if (!(await requireSupabase('emprestimo-feedback'))) return;
+      const leitor_id = Number(el('leitor').value), livro_id = Number(el('livro').value);
+      const data_retirada = el('retirada').value, prazo_devolucao = el('prazo').value;
+      if (!leitor_id || !livro_id) { setFeedback('emprestimo-feedback','error','Selecione leitor e livro disponível.'); return; }
+      const { error } = await supabase.from('emprestimos').insert({ leitor_id, livro_id, data_retirada, prazo_devolucao, status: 'em_dia' });
+      if (error) { setFeedback('emprestimo-feedback','error','Erro ao registrar empréstimo: ' + error.message); return; }
+      await supabase.from('livros').update({ status: 'emprestado', previsao_devolucao: prazo_devolucao }).eq('id', livro_id);
+      setFeedback('emprestimo-feedback','success','Empréstimo registrado (CRUD: create/update). Livro marcado como emprestado.');
+      await carregarAcervo(); await carregarEmprestimos(); await carregarFormEmprestimo();
+    }
+
+    async function carregarEmprestimos() {
+      if (!supabase) return;
+      const { data, error } = await supabase.from('emprestimos').select('id,data_retirada,prazo_devolucao,status,livro_id,leitor_id,livros(codigo,titulo),leitores(nome)').order('id',{ascending:false});
+      if (error) { setFeedback('devolucao-feedback','error','Erro ao listar empréstimos: ' + error.message); return; }
+      const rows = data || [];
+      const ativos = rows.filter(r=>r.status!=='devolvido').length;
+      const atrasados = rows.filter(r=>r.status==='atrasado').length;
+      const devolvidos = rows.filter(r=>r.status==='devolvido').length;
+      if (el('kpi-ativos')) el('kpi-ativos').textContent = ativos;
+      if (el('kpi-atrasados')) el('kpi-atrasados').textContent = atrasados;
+      if (el('kpi-devolvidos')) el('kpi-devolvidos').textContent = devolvidos;
+      const tbody = el('emprestimos-tbody');
+      if (!rows.length) { tbody.innerHTML = '<tr><td colspan="6" class="muted">Nenhum empréstimo registrado.</td></tr>'; return; }
+      tbody.innerHTML = rows.map(r => {
+        const acao = r.status === 'devolvido' ? '<span class="muted">Concluído</span>' : `<button class="btn btn-primary" type="button" data-devolver="${r.id}" data-livro="${r.livro_id}">Registrar devolução</button>`;
+        return `<tr><td>${r.leitores?.nome||'—'}</td><td>${r.livros?.codigo||''} — ${r.livros?.titulo||''}</td><td>${fmtDate(r.data_retirada)}</td><td>${fmtDate(r.prazo_devolucao)}</td><td>${badge(r.status)}</td><td>${acao}</td></tr>`;
+      }).join('');
+    }
+
+    async function registrarDevolucao(empId, livroId) {
+      if (!(await requireSupabase('devolucao-feedback'))) return;
+      const { error } = await supabase.from('emprestimos').update({ status: 'devolvido', data_devolucao: todayISO() }).eq('id', empId);
+      if (error) { setFeedback('devolucao-feedback','error','Erro ao registrar devolução: ' + error.message); return; }
+      await supabase.from('livros').update({ status: 'disponivel', previsao_devolucao: null }).eq('id', livroId);
+      setFeedback('devolucao-feedback','success','Devolução registrada (CRUD: update). Exemplar disponível no acervo.');
+      await carregarAcervo(); await carregarEmprestimos(); await carregarFormEmprestimo();
+    }
+
+    document.addEventListener('click', async (e) => {
+      const del = e.target.closest('[data-del-livro]');
+      const edit = e.target.closest('[data-edit-livro]');
+      const dev = e.target.closest('[data-devolver]');
+      if (del && supabase) {
+        if (!confirm('Excluir este livro? (CRUD: delete)')) return;
+        const { error } = await supabase.from('livros').delete().eq('id', Number(del.dataset.delLivro));
+        if (error) setFeedback('acervo-feedback','error','Erro ao excluir: ' + error.message + ' (livros vinculados a empréstimos não podem ser excluídos).');
+        else { setFeedback('acervo-feedback','success','Livro excluído (CRUD: delete).'); await carregarAcervo(); }
+      }
+      if (edit && supabase) {
+        const { data } = await supabase.from('livros').select('*').eq('id', Number(edit.dataset.editLivro)).single();
+        if (data) { el('titulo').value=data.titulo; el('autor').value=data.autor; el('codigo').value=data.codigo; el('titulo').dataset.editId = data.id; setFeedback('livro-feedback','warn','Editando livro ' + data.codigo + '. Clique em “Salvar livro” para atualizar (CRUD: update).'); show('t2'); }
+      }
+      if (dev && supabase) {
+        await registrarDevolucao(Number(dev.dataset.devolver), Number(dev.dataset.livro));
+      }
+    });
+
+    el('btn-buscar')?.addEventListener('click', carregarAcervo);
+    el('btn-atualizar-acervo')?.addEventListener('click', carregarAcervo);
+    el('btn-seed-livros')?.addEventListener('click', seedLivros);
+    el('btn-salvar-livro')?.addEventListener('click', salvarLivro);
+    el('btn-salvar-leitor')?.addEventListener('click', salvarLeitor);
+    el('btn-confirmar-emprestimo')?.addEventListener('click', confirmarEmprestimo);
+    el('btn-limpar-livro')?.addEventListener('click', ()=>{ ['titulo','autor','codigo'].forEach(id=>el(id).value=''); delete el('titulo').dataset.editId; setFeedback('livro-feedback','', ''); });
+    el('btn-limpar-leitor')?.addEventListener('click', ()=>{ el('nome').value=''; el('tel').value=''; setFeedback('leitor-feedback','', ''); });
+    el('retirada')?.addEventListener('change', ()=>{ const d=new Date(el('retirada').value+'T00:00:00'); if(!isNaN(d)){ d.setDate(d.getDate()+14); el('prazo').value=d.toISOString().slice(0,10);} });
+
+    document.addEventListener('screen:show', (e) => {
+      if (e.detail.id === 't1') carregarAcervo();
+      if (e.detail.id === 't3') carregarFormEmprestimo();
+      if (e.detail.id === 't4') carregarEmprestimos();
+    });
+
+    if (supabase) {
+      carregarAcervo();
+      const banner = document.createElement('div');
+      banner.className = 'container';
+      banner.innerHTML = '<div class="alert alert-success" role="status" style="margin-top:.75rem">Supabase configurado (projeto: ' + (cfg.url||'').replace('https://','') + '). CRUD do front habilitado para teste.</div>';
+      document.body.insertBefore(banner, document.body.querySelector('.container'));
+    } else {
+      const banner = document.createElement('div');
+      banner.className = 'container';
+      banner.innerHTML = '<div class="alert alert-warn" role="status" style="margin-top:.75rem">Aula 03 (Supabase): crie <code>supabase-config.js</code> a partir de <code>supabase-config.example.js</code> com URL e anon key para testar CRUD. Segredos não devem ser commitados.</div>';
+      document.body.insertBefore(banner, document.body.querySelector('.container'));
+    }
+  </script>
+</body>
+</html>
