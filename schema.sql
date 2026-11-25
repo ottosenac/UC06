@@ -1,4 +1,4 @@
-﻿-- Aula 03 / UC06 - Schema Supabase (PostgreSQL) para MVP Biblioteca Comunitária
+-- Aula 03 / UC06 - Schema Supabase (PostgreSQL) para MVP Biblioteca Comunitária
 -- Execute no Supabase SQL Editor. Ajuste policies conforme autenticação do projeto.
 
 -- Extensão para UUID (opcional; usamos bigint identity para simplicidade)
@@ -97,6 +97,14 @@ create policy "emprestimos_select_anon" on public.emprestimos for select to anon
 create policy "emprestimos_insert_anon" on public.emprestimos for insert to anon, authenticated with check (true);
 create policy "emprestimos_update_anon" on public.emprestimos for update to anon, authenticated using (true) with check (true);
 create policy "emprestimos_delete_anon" on public.emprestimos for delete to anon, authenticated using (true);
+
+-- Privilégios SQL para o SDK público no MVP. RLS acima continua controlando as linhas.
+-- Em produção, substitua estes grants/policies permissivos por papéis e regras específicas.
+grant usage on schema public to anon, authenticated;
+grant select, insert, update, delete
+  on table public.livros, public.leitores, public.emprestimos
+  to anon, authenticated;
+grant usage, select on all sequences in schema public to anon, authenticated;
 
 -- Dados de teste (opcional): 3 livros
 insert into public.livros (codigo, titulo, autor, status, previsao_devolucao)

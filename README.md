@@ -169,6 +169,9 @@
 
 - **Aula 01:** [aulas/aula-01-conteudo.md](aulas/aula-01-conteudo.md), [aulas/aula-01/01-problema-e-entrevista.md](aulas/aula-01/01-problema-e-entrevista.md), [aulas/aula-01/02-personas.md](aulas/aula-01/02-personas.md), [aulas/aula-01/03-requisitos-e-historias.md](aulas/aula-01/03-requisitos-e-historias.md)
 - **Aula 02:** [aulas/aula-02-conteudo.md](aulas/aula-02-conteudo.md), [aulas/aula-02/01-mapa-de-telas.md](aulas/aula-02/01-mapa-de-telas.md), [aulas/aula-02/02-tokens-visuais.md](aulas/aula-02/02-tokens-visuais.md), [aulas/aula-02/03-hi-fi-com-ia.md](aulas/aula-02/03-hi-fi-com-ia.md), [aulas/aula-02/04-teste-heuristico.md](aulas/aula-02/04-teste-heuristico.md), [aulas/aula-02/05-respostas-perguntas-finais.md](aulas/aula-02/05-respostas-perguntas-finais.md), [aulas/aula-02/hi-fi-telas.html](aulas/aula-02/hi-fi-telas.html)
+- **Aula 03:** [aulas/aula-03-conteudo.md](aulas/aula-03-conteudo.md), [aulas/aula-03/README.md](aulas/aula-03/README.md)
+- **Aula 04:** [aulas/aula-04-conteudo.md](aulas/aula-04-conteudo.md), [aulas/aula-04/README.md](aulas/aula-04/README.md), [frontend React + Tailwind](aulas/aula-04/frontend/)
+- **Aula 05:** [aulas/aula-05-conteudo.md](aulas/aula-05-conteudo.md), [plano de testes](aulas/aula-05/01-plano-de-testes.md), [roteiro de demonstração](aulas/aula-05/05-roteiro-demonstracao.md)
 
 ## Execução técnica (Node.js + MySQL)
 
