@@ -19,6 +19,7 @@ export function ReaderForm() {
 
   async function submit(event) {
     event.preventDefault();
+    if (saving) return;
     setFeedback(null);
     if (!validate()) return;
     if (!isSupabaseConfigured) {
@@ -26,14 +27,14 @@ export function ReaderForm() {
       return;
     }
     setSaving(true);
-    const { error } = await supabase.from('leitores').insert({ nome: form.nome.trim(), telefone: form.telefone.trim() });
-    setSaving(false);
-    if (error) {
-      setFeedback({ type: 'error', message: error.message });
-      return;
-    }
-    setFeedback({ type: 'success', message: 'Leitor cadastrado com sucesso.' });
-    setForm({ nome: '', telefone: '' });
+    try {
+      const { error } = await supabase.from('leitores').insert({ nome: form.nome.trim(), telefone: form.telefone.trim() });
+      if (error) { setFeedback({ type: 'error', message: 'Não foi possível cadastrar o leitor. Confira a conexão e tente novamente.' }); return; }
+      setFeedback({ type: 'success', message: 'Leitor cadastrado com sucesso.' });
+      setForm({ nome: '', telefone: '' });
+    } catch {
+      setFeedback({ type: 'error', message: 'Não foi possível conectar. Confira sua conexão e tente novamente.' });
+    } finally { setSaving(false); }
   }
 
   return <Card><h2 className="text-xl font-extrabold">Cadastro de leitor</h2><p className="mt-1 text-slate-600">Registre os dados mínimos para vincular empréstimos.</p><form className="mt-5 grid gap-4" onSubmit={submit} noValidate><Input id="leitor-nome" label="Nome" value={form.nome} error={errors.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })} /><Input id="leitor-telefone" label="Telefone" inputMode="tel" value={form.telefone} error={errors.telefone} onChange={(e) => setForm({ ...form, telefone: e.target.value })} /><div><Button type="submit" disabled={saving}>{saving ? 'Salvando...' : 'Cadastrar leitor'}</Button></div></form><div className="mt-4">{feedback?.type === 'error' && <ErrorState message={feedback.message} />}{feedback?.type === 'success' && <SuccessState message={feedback.message} />}</div></Card>;

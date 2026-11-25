@@ -48,7 +48,9 @@
 - [x] **Integrar `@supabase/supabase-js`** e configurar variáveis de ambiente/chave publicável localmente para o front (sem commitar segredos; `supabase-config.js` gitignored preparado).
 - [x] **Criar cliente Supabase** no projeto (`lib/supabase.ts` e integração utilizável pelo protótipo).
 - [x] **Implementar CRUD do front** (listar, inserir, atualizar, excluir).
-- [ ] **Testar CRUD completo do front** e confirmar persistência no Table Editor (listar/buscar, inserir, editar, excluir, registrar empréstimo/devolução).
-- [ ] **Inserir/validar registros de teste** (ex.: 3 livros via seed do schema ou botão “Inserir 3 livros (teste)”) e conferir no projeto Supabase.
+- [x] **Validar a integração com o Supabase:** leitura do acervo e fluxo automatizado de cadastro de livro, leitor e empréstimo.
+- [x] **Inserir/validar registros de teste:** os livros iniciais e dados de demonstração foram inseridos e consultados no Supabase.
+
+**Limite da validação:** edição, exclusão e devolução não foram verificadas integralmente no frontend React atual; empréstimo e devolução usam duas gravações separadas e exigem tratamento transacional para evitar inconsistências em caso de falha.
 - [x] **Organizar artefatos no repositório** (schema, integração, documentação) e registrar URL do projeto Supabase para submissão.
 

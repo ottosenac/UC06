@@ -62,5 +62,6 @@ npm run build
 - [x] Documentar execução, configuração e validação técnica nesta README.
 - [x] Validar o bundle de produção com `npm run build`.
 - [x] Executar e confirmar policies RLS e privilégios SQL no Supabase; validar leituras do frontend contra o projeto.
-- [ ] Registrar screenshots funcionais das quatro telas após a configuração local do Supabase.
-- [ ] Publicar em Vercel/Netlify e anexar a URL pública da submissão.
+- [x] Registrar captura do acervo conectado no pitch.
+
+O usuário informou que o deploy foi realizado; a URL pública não está registrada neste repositório. A captura adicionada ao pitch mostra o acervo, não as quatro telas.

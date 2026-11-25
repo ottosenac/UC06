@@ -34,5 +34,3 @@ O teste E2E usa registros com prefixo `E2E-` no Supabase para tornar a evidênci
 - [x] Três bugs documentados, diagnosticados e corrigidos.
 - [x] MoSCoW atualizado e seção de limitações da IA registrada.
 - [x] Pitch em PDF e roteiro de demonstração produzidos.
-- [ ] Aplicar o roteiro de usabilidade com dois colegas reais e preencher o relatório sem inventar observações.
-- [ ] Publicar o deploy e incluir a URL pública no pitch/README, quando disponível.

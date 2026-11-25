@@ -49,6 +49,8 @@
 - [x] Criar arquivo de exemplo de variáveis de ambiente sem segredo.
 - [x] Instalar dependências e validar o build de produção.
 - [x] Executar e confirmar as policies RLS e os privilégios SQL no projeto Supabase; o acervo carregou os livros de teste e as demais telas consultaram o banco sem erro de permissão.
-- [ ] Executar o CRUD real no Supabase/Table Editor após corrigir as policies RLS.
-- [ ] Gerar screenshots reais após conectar as credenciais locais.
-- [ ] Fazer o deploy público para a submissão.
+- [x] Validar consultas e o fluxo real de cadastro e empréstimo no Supabase após corrigir as policies RLS.
+- [x] Gerar captura real do acervo conectado, incluída no pitch.
+
+**Deploy:** o usuário informou que foi realizado; a URL pública não foi localizada nos arquivos do projeto.
+**Limite:** o CRUD completo, incluindo edição, exclusão e devolução, não foi confirmado no frontend React atual.

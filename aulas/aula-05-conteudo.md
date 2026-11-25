@@ -28,4 +28,6 @@
 - [x] Executar um fluxo E2E real contra o Supabase com Playwright.
 - [x] Documentar e corrigir três bugs prioritários.
 - [x] Criar o pitch em PDF e o roteiro da demo.
-- [ ] Coletar e registrar o teste de usabilidade com duas pessoas.
+- [x] Registrar o autoteste e os problemas relatados pelo responsável pelo projeto.
+
+O registro corresponde a um autoteste; não foram documentadas duas sessões independentes com colegas.

@@ -47,11 +47,10 @@ RE: Sim, validei testando em tela, visualizando erros no console e de network.
 ## Checklist do que deve ser executado (Aula 02) — lo-fi pulado
 
 - [x] **Definir o mapa de telas** do sistema (fluxo/navegação, profundidade ≤ 3) — `aulas/aula-02/01-mapa-de-telas.md`.
-- [ ] ~~Lo-fi~~ (etapa pulada).
 - [x] **Definir tokens visuais** (paleta, tipografia, espaçamento) — `aulas/aula-02/02-tokens-visuais.md`, `aulas/aula-02/tokens.json`.
 - [x] **Gerar hi-fi com IA** (prompt CTQ por tela, até 3 variações se necessário) — `aulas/aula-02/03-hi-fi-com-ia.md`, `aulas/aula-02/hi-fi-telas.html`.
 - [x] **Aplicar teste heurístico** (5 heurísticas principais em cada tela; corrigir críticos) — `aulas/aula-02/04-teste-heuristico.md`.
 - [x] **Responder as perguntas finais do PDF** — `aulas/aula-02/05-respostas-perguntas-finais.md`.
-- [ ] **Organizar/registrar no Git do projeto**.
+- [x] **Organizar/registrar no Git do projeto** (artefatos versionados no repositório).
 
 
