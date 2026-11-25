@@ -12,21 +12,15 @@
   },
   "rewrites": [
     {
-      "source": "/aula-04",
+      "source": "/api/(.*)",
       "destination": {
-        "service": "frontend"
-      }
-    },
-    {
-      "source": "/aula-04/(.*)",
-      "destination": {
-        "service": "frontend"
+        "service": "app"
       }
     },
     {
       "source": "/(.*)",
       "destination": {
-        "service": "app"
+        "service": "frontend"
       }
     }
   ]
